@@ -10,17 +10,18 @@ Recommended description: Reproducible code and derived outputs for cross-dataset
 | Field | Status |
 |---|---|
 | Local repository path | `release/public_repository_candidate` within the private project workspace; the user-specific absolute path is intentionally omitted from the public report |
-| GitHub repository URL | NOT CREATED — GitHub CLI/authentication unavailable during preparation |
-| Visibility | LOCAL ONLY; no public release authorized or performed |
-| Current branch | `main` |
+| GitHub repository URL | `https://github.com/y15848102126-creator/hUCMSC-PE-paracrine-communication` |
+| Visibility | **PRIVATE**; no public release authorized or performed |
+| Current branch | `main`, tracking `origin/main` |
 | Initial release commit SHA | `d12bfd3cb356ef5aebcd3cb469465e5eb68e8280` |
-| Local tag status | `v1.0.0` created locally after final repository verification; not pushed and not published as a GitHub Release |
-| GitHub Release status | NOT CREATED; requires human approval after repository inspection |
+| Prepared release commit SHA | `834602d2049f301dbe10ecfef3f11908b90f6221` |
+| Remote tag status | Annotated `v1.0.0` pushed; tag object `54e897952eec3afbdc060856b4541ef423d676c5`, peeled commit `834602d2049f301dbe10ecfef3f11908b90f6221` |
+| GitHub Release status | NOT CREATED; requires separate human approval after private repository inspection |
 | License | BSD 3-Clause for original project code only |
 | Tracked files | 160, including this report and excluding `.git/` |
-| Repository content size | 6,157,946 bytes, excluding `.git/` |
+| Repository content size | 6,158,398 bytes, excluding `.git/` |
 | Files excluded by `.gitignore` | 0 existing release-candidate files |
-| Privacy/credential scan | PASS before Git initialization; no unresolved sensitive/private content detected |
+| Privacy/credential scan | PASS before Git initialization and unchanged during the push-only stage; no unresolved sensitive/private content detected |
 | Manifest verification | PASS after regeneration; `FILE_MANIFEST.csv` excludes itself and covers every other tracked release file |
 | Third-party redistribution status | No raw matrices, complete third-party database/network dumps, source proteomics tables, publication PDFs, or supplementary source files are redistributed; source-provider rights remain in force |
 | Zenodo DOI | PENDING; no connection or deposit was attempted |
@@ -54,38 +55,24 @@ The 20 largest tracked files before the initial commit were:
 | 19 | `config/dataset_judgments.json` | 26,302 |
 | 20 | `scripts/01_phase1a1/build_phase1a1_amendment.py` | 24,805 |
 
-## GitHub authentication boundary
+## GitHub push verification
 
-GitHub CLI was not installed, no `GH_TOKEN` or `GITHUB_TOKEN` was present, and no Git Credential Manager was available. Preparation therefore stops at a verified local Git repository. No password or token should be written into this repository.
+- Git for Windows `2.53.0.windows.3` and GitHub CLI `2.97.0` were verified.
+- GitHub CLI authentication was confirmed for `y15848102126-creator` without storing a token in the repository.
+- An exact account-qualified lookup confirmed that `y15848102126-creator/hUCMSC-PE-paracrine-communication` did not exist before creation. No existing repository was overwritten.
+- A new empty GitHub repository was created with `PRIVATE` visibility and the prespecified description.
+- `origin` is exactly `https://github.com/y15848102126-creator/hUCMSC-PE-paracrine-communication.git`.
+- The initial remote `main` SHA matched the prepared release commit `834602d2049f301dbe10ecfef3f11908b90f6221`.
+- The remote annotated `v1.0.0` tag resolves to the same prepared release commit. The tag was not moved during this administrative report update.
+- The initial remote history contained exactly the two independent public-repository commits, rooted at `d12bfd3cb356ef5aebcd3cb469465e5eb68e8280`; no parent private-project commit was present. The only subsequent `main` commit records this post-push report and its manifest hash.
+- GitHub's rendered-README endpoint returned content containing the repository title and the authoritative receiver-method boundary.
+- Repository visibility was rechecked as `PRIVATE`; the default branch was `main`; the GitHub Release count was zero.
+- No visibility change, GitHub Release creation, or Zenodo connection was performed.
 
-After installing GitHub CLI and authenticating interactively, run from this repository:
-
-```powershell
-gh auth login
-gh repo view hUCMSC-PE-paracrine-communication
-```
-
-If the second command confirms that no repository with that name exists in the intended account or organization, create a private repository and push:
-
-```powershell
-gh repo create hUCMSC-PE-paracrine-communication --private --description "Reproducible code and derived outputs for cross-dataset inference of hUC-MSC sender–receiver communication in preeclampsia." --source . --remote origin --push
-git push origin v1.0.0
-```
-
-Inspect the private repository before any visibility change. Only after explicit human authorization should it be made public:
-
-```powershell
-gh repo edit hUCMSC-PE-paracrine-communication --visibility public
-```
-
-Only after separate human approval of release status should a GitHub Release be created:
-
-```powershell
-gh release create v1.0.0 --title "v1.0.0 — Manuscript reproducibility release" --notes "Reproducibility release accompanying the manuscript ‘Independent mapping of placental receiver states and hUC-MSC sender programs constrains putative paracrine communication in preeclampsia.’"
-```
+The SHA of the report-containing `main` commit is not embedded in this file because a commit cannot reproducibly contain its own SHA. It is verified by comparing local `HEAD`, `origin/main`, and the GitHub API after the report commit is pushed.
 
 ## Final gate
 
-**LOCAL_PUBLIC_REPOSITORY_READY_FOR_GITHUB_AUTHENTICATION**
+**PUBLIC_GITHUB_REPOSITORY_CREATED_PRIVATE_FOR_HUMAN_REVIEW**
 
-No scientific analysis was rerun, and no public GitHub repository or Zenodo record was created.
+No scientific analysis was rerun. The repository remains private, and no GitHub Release or Zenodo record was created.
