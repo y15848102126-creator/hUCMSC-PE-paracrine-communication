@@ -11,20 +11,22 @@ Recommended description: Reproducible code and derived outputs for cross-dataset
 |---|---|
 | Local repository path | `release/public_repository_candidate` within the private project workspace; the user-specific absolute path is intentionally omitted from the public report |
 | GitHub repository URL | `https://github.com/y15848102126-creator/hUCMSC-PE-paracrine-communication` |
-| Visibility | **PRIVATE**; no public release authorized or performed |
+| Visibility | **PUBLIC**; explicitly authorized after all private-repository checks passed |
 | Current branch | `main`, tracking `origin/main` |
 | Initial release commit SHA | `d12bfd3cb356ef5aebcd3cb469465e5eb68e8280` |
 | Prepared release commit SHA | `834602d2049f301dbe10ecfef3f11908b90f6221` |
+| Remote `main` immediately after the visibility-only operation | `240498efe74c5ee0bcb4ee779594c2cbebd6dc1a`; identical before and after the visibility change |
 | Remote tag status | Annotated `v1.0.0` pushed; tag object `54e897952eec3afbdc060856b4541ef423d676c5`, peeled commit `834602d2049f301dbe10ecfef3f11908b90f6221` |
 | GitHub Release status | NOT CREATED; requires separate human approval after private repository inspection |
 | License | BSD 3-Clause for original project code only |
 | Tracked files | 160, including this report and excluding `.git/` |
-| Repository content size | 6,158,398 bytes, excluding `.git/` |
+| Repository content size | 6,160,053 bytes, excluding `.git/` |
 | Files excluded by `.gitignore` | 0 existing release-candidate files |
 | Privacy/credential scan | PASS before Git initialization and unchanged during the push-only stage; no unresolved sensitive/private content detected |
 | Manifest verification | PASS after regeneration; `FILE_MANIFEST.csv` excludes itself and covers every other tracked release file |
 | Third-party redistribution status | No raw matrices, complete third-party database/network dumps, source proteomics tables, publication PDFs, or supplementary source files are redistributed; source-provider rights remain in force |
 | Zenodo DOI | PENDING; no connection or deposit was attempted |
+| Files changed by the visibility operation | NONE; the subsequent administrative update changed only this report and its `FILE_MANIFEST.csv` hash record |
 
 ## Pre-commit inventory
 
@@ -66,13 +68,24 @@ The 20 largest tracked files before the initial commit were:
 - The remote annotated `v1.0.0` tag resolves to the same prepared release commit. The tag was not moved during this administrative report update.
 - The initial remote history contained exactly the two independent public-repository commits, rooted at `d12bfd3cb356ef5aebcd3cb469465e5eb68e8280`; no parent private-project commit was present. The only subsequent `main` commit records this post-push report and its manifest hash.
 - GitHub's rendered-README endpoint returned content containing the repository title and the authoritative receiver-method boundary.
-- Repository visibility was rechecked as `PRIVATE`; the default branch was `main`; the GitHub Release count was zero.
-- No visibility change, GitHub Release creation, or Zenodo connection was performed.
+- During the initial push stage, repository visibility was rechecked as `PRIVATE`; the default branch was `main`; the GitHub Release count was zero.
+- The initial push stage performed no visibility change, GitHub Release creation, or Zenodo connection.
 
 The SHA of the report-containing `main` commit is not embedded in this file because a commit cannot reproducibly contain its own SHA. It is verified by comparing local `HEAD`, `origin/main`, and the GitHub API after the report commit is pushed.
 
+## Public-visibility verification
+
+- Before the visibility change, the exact account/repository identity, private visibility, `main` default branch, sole `origin`, remote `main`, remote `v1.0.0`, independent root history, rendered README, required notices, zero GitHub Releases, manifest integrity, and privacy/credential scan all passed.
+- The authenticated GitHub account changed only this repository's visibility from `PRIVATE` to `PUBLIC`; the repository was not deleted or recreated, and no force-push occurred.
+- Immediately after the change, GitHub reported `PUBLIC` visibility and default branch `main`; unauthenticated repository access returned HTTP 200.
+- Remote `main` remained `240498efe74c5ee0bcb4ee779594c2cbebd6dc1a` throughout the visibility-only operation.
+- The annotated `v1.0.0` tag remained unchanged and peeled to `834602d2049f301dbe10ecfef3f11908b90f6221`.
+- The README rendered successfully, and `LICENSE`, `THIRD_PARTY_NOTICE.md`, and `DATA_AND_DERIVED_OUTPUTS_NOTICE.md` remained accessible.
+- GitHub Release count remained zero. No Zenodo interaction occurred.
+- This post-verification report update is administrative and does not alter scientific outputs. Its commit advances `main` after the visibility checkpoint without moving `v1.0.0`.
+
 ## Final gate
 
-**PUBLIC_GITHUB_REPOSITORY_CREATED_PRIVATE_FOR_HUMAN_REVIEW**
+**PUBLIC_GITHUB_REPOSITORY_PUBLIC_AND_READY_FOR_ZENODO_CONNECTION**
 
-No scientific analysis was rerun. The repository remains private, and no GitHub Release or Zenodo record was created.
+No scientific analysis was rerun. The repository is public; no GitHub Release or Zenodo record was created.
