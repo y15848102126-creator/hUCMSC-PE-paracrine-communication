@@ -1,0 +1,11 @@
+#!/usr/bin/env Rscript
+args <- commandArgs(trailingOnly=TRUE)
+root <- if(length(args)) normalizePath(args[[1]],winslash="/",mustWork=TRUE) else normalizePath(".",winslash="/")
+lib <- file.path(root,"data","interim","phase1a1","Rlib")
+dir.create(lib,recursive=TRUE,showWarnings=FALSE); .libPaths(c(lib,.libPaths()))
+if(!requireNamespace("BiocManager",quietly=TRUE)) install.packages("BiocManager",repos="https://cloud.r-project.org",lib=lib)
+BiocManager::install(version="3.22",ask=FALSE,update=FALSE)
+if(!requireNamespace("edgeR",quietly=TRUE)) BiocManager::install("edgeR",ask=FALSE,update=FALSE,lib=lib)
+if(!requireNamespace("data.table",quietly=TRUE)) install.packages("data.table",repos="https://cloud.r-project.org",lib=lib)
+stopifnot(requireNamespace("edgeR",quietly=TRUE),requireNamespace("limma",quietly=TRUE),requireNamespace("data.table",quietly=TRUE))
+for(p in c("edgeR","limma","data.table","statmod")) cat(p,"=",as.character(packageVersion(p)),"\n",sep="")

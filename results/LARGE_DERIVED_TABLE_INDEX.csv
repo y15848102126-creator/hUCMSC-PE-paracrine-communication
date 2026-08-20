@@ -1,0 +1,3 @@
+source_file,row_count,sha256,description,distribution
+results/01_phase1b/meta/pe_gene_meta_analysis.csv,17731,d1c0f8dc73626b2e11a30affa7bcabd289aa72c70aba41d2489ba6c5ddc71b37,Cross-cohort gene-level meta-analysis; frozen negative primary result,Not duplicated in lightweight candidate; reproducible from frozen workflow or supplied as separate archive after author approval
+results/02_phase2a2/corrected_analysis/corrected_gene_statistics.csv,368370,2ad6e645f7bb8f64892213e59a4aa24f6005c9c463ff93f3b9b313d8db1eaf05,Authoritative corrected pregnancy-level receiver gene statistics,Not duplicated in lightweight candidate; reproducible from frozen workflow or supplied as separate archive after author approval

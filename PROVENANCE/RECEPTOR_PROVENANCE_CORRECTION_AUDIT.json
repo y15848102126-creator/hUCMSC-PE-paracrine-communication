@@ -1,0 +1,60 @@
+{
+  "correction_type": "NON_INFERENTIAL_PROVENANCE_CORRECTION",
+  "cause": "The eligibility registry contains pooled PE/CONTROL rows in addition to mutually exclusive EOPE/LOPE and EARLY_CONTROL/LATE_CONTROL rows. The Phase 4A export included both row types, deduplicated by patient_id plus group, and classified only EOPE/LOPE as PE; pooled PE rows were therefore duplicated and misclassified into descriptive controls.",
+  "receptor_export_sha256_before": "996e6ffdf4558b9a22e2e702f936b24928f2d139fcf3b8ac720639dc373f9873",
+  "receptor_export_sha256_after": "0cc4bb4f1f822b49d134acf246b2c09508790d865ddd43437bec36c7ef8200ae",
+  "frozen_receptor_projection_sha256_before": "50335f1c5a2d30af5dce508418403ac7474fcc82579849fa46a72326ea52a541",
+  "frozen_receptor_projection_sha256_after": "50335f1c5a2d30af5dce508418403ac7474fcc82579849fa46a72326ea52a541",
+  "changed_columns": [
+    "control_detected_n",
+    "control_detected_proportion",
+    "control_donor_expression",
+    "control_median_mean_normalized_expression",
+    "control_pregnancy_n"
+  ],
+  "downstream_sha256_before": {
+    "phase4a_candidate_hierarchy": "0035af1d92b7b989f6b76084365439d83918b2aa9a1d72fd0a382abfe0316b4d",
+    "sender_receiver_evidence_matrix": "730f10bf982d047994026b93b0b5b75064e2683d78b46fb0800e8f26333e19bb",
+    "final_17_candidate_evidence": "66e1afcc0f64e4c5f713787b986c99186164c7ba57d8bc65d3bec7ba3b0c9dfb",
+    "final_receiver_evidence": "8f4e481f5482dec9edade26d6f33a46ec3585f867d6d9014007b48c5b231bad7",
+    "final_sender_evidence": "590a6dc9b330552885a85f4fc25086dd75468b38342e07eca22ef33ceee1b2c8"
+  },
+  "downstream_sha256_after": {
+    "phase4a_candidate_hierarchy": "0035af1d92b7b989f6b76084365439d83918b2aa9a1d72fd0a382abfe0316b4d",
+    "sender_receiver_evidence_matrix": "730f10bf982d047994026b93b0b5b75064e2683d78b46fb0800e8f26333e19bb",
+    "final_17_candidate_evidence": "66e1afcc0f64e4c5f713787b986c99186164c7ba57d8bc65d3bec7ba3b0c9dfb",
+    "final_receiver_evidence": "8f4e481f5482dec9edade26d6f33a46ec3585f867d6d9014007b48c5b231bad7",
+    "final_sender_evidence": "590a6dc9b330552885a85f4fc25086dd75468b38342e07eca22ef33ceee1b2c8"
+  },
+  "downstream_hashes_unchanged": true,
+  "rows": 1784,
+  "control_summary": [
+    {
+      "receiver_celltype": "HOFBAUER",
+      "control_pregnancy_n": 1,
+      "minimum_control_n": 9,
+      "maximum_control_n": 9
+    },
+    {
+      "receiver_celltype": "MACROPHAGE",
+      "control_pregnancy_n": 1,
+      "minimum_control_n": 9,
+      "maximum_control_n": 9
+    },
+    {
+      "receiver_celltype": "PLACENTAL_STROMAL",
+      "control_pregnancy_n": 1,
+      "minimum_control_n": 9,
+      "maximum_control_n": 9
+    },
+    {
+      "receiver_celltype": "SCT",
+      "control_pregnancy_n": 1,
+      "minimum_control_n": 9,
+      "maximum_control_n": 9
+    }
+  ],
+  "pe_values_unchanged": true,
+  "receptor_competence_unchanged": true,
+  "manuscript_impact": "NONE"
+}

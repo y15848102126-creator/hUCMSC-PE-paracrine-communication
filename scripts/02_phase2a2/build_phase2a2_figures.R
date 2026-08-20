@@ -1,0 +1,30 @@
+#!/usr/bin/env Rscript
+suppressPackageStartupMessages(library(data.table))
+args <- commandArgs(trailingOnly=TRUE)
+root <- if(length(args)) normalizePath(args[1],winslash="/",mustWork=TRUE) else normalizePath(file.path(dirname(sub("^--file=","",commandArgs(FALSE)[grep("^--file=",commandArgs(FALSE))][1])),"../.."),winslash="/",mustWork=TRUE)
+setwd(root)
+out <- "results/02_phase2a2/figures"; dir.create(out,recursive=TRUE,showWarnings=FALSE)
+
+t1 <- fread("results/02_phase2a2/corrected_analysis/frozen20_corrected_retest.csv")
+short <- sub("^(GOBP|REACTOME|HALLMARK)_","",t1$gene_set)
+short <- paste0(t1$celltype," | ",short)
+short <- vapply(short,function(x)paste(strwrap(gsub("_"," ",x),width=48),collapse="\n"),character(1))
+vals <- rbind(t1$corrected_effect_statistic_EOPE,t1$corrected_effect_statistic_LOPE)
+lim <- quantile(abs(vals),.95,na.rm=TRUE); vals <- pmax(pmin(vals,lim),-lim)
+cols <- hcl.colors(101,"Blue-Red 3")
+png(file.path(out,"A_frozen20_corrected_direction.png"),1700,1500,res=150)
+par(mar=c(6,29,4,6)); image(1:2,1:20,vals,col=cols,zlim=c(-lim,lim),axes=FALSE,xlab="",ylab="",main="Frozen 20: corrected donor-level program statistics")
+axis(1,1:2,c("EOPE","LOPE"),cex.axis=1.1); axis(2,1:20,short,las=1,cex.axis=.62); box();
+legend("topright",inset=c(-.17,0),xpd=TRUE,legend=c("Lower in PE","Higher in PE"),fill=c(cols[1],cols[length(cols)]),bty="n",cex=.8)
+dev.off()
+
+classes <- c("CORRECTED_SHARED_SUPPORT","EOPE_ONLY_SUPPORT","LOPE_ONLY_SUPPORT","DIRECTION_ONLY","NOT_SUPPORTED")
+counts <- table(factor(t1$classification,levels=classes))
+labels <- c("Corrected shared","EOPE only","LOPE only","Direction only","Not supported")
+png(file.path(out,"B_tier1_classification.png"),1300,850,res=150)
+par(mar=c(5,11,4,2)); bp<-barplot(rev(counts),names.arg=rev(labels),horiz=TRUE,las=1,col=rev(c("#59A14F","#4E79A7","#F28E2B","#EDC948","#E15759")),xlim=c(0,21),xlab="Frozen hypotheses",main="Tier 1 classification (BH within frozen 20)"); text(rev(counts)+.3,bp,labels=rev(counts),adj=0);dev.off()
+
+h <- fread("results/02_phase2a2/evidence/receiver_module_evidence_hierarchy.csv")
+levcols <- c(LEVEL_A="#59A14F",LEVEL_B="#4E79A7",UNCLASSIFIED_FROZEN_HIERARCHY_GAP="#E15759")
+png(file.path(out,"C_corrected_module_status.png"),1300,850,res=150)
+par(mar=c(6,5,4,2)); barplot(rep(1,nrow(h)),names.arg=sub("PROGRAM_MODULE_","M",h$program_module),col=levcols[h$evidence_level],ylim=c(0,1.15),ylab="Corrected Admati support",main="Receiver module evidence hierarchy"); text(seq(.7,by=1.2,length.out=nrow(h)),1.04,ifelse(h$phase2b_program_validation_candidate=="YES","A",ifelse(h$phase2b_program_validation_candidate=="YES_WITH_RESTRICTIONS","B","HOLD")),cex=.72); legend("bottom",inset=c(0,-.18),xpd=TRUE,horiz=TRUE,legend=c("Level A","Level B","External discordance: held"),fill=levcols,bty="n",cex=.85);dev.off()

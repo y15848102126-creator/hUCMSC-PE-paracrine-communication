@@ -1,0 +1,97 @@
+{
+  "phase": "PHASE_3_INDEPENDENT_HUCMSC_SENDER",
+  "freeze_date": "2026-08-10",
+  "outcome_inspection_status_at_freeze": "NO_HUCMSC_LIGAND_IDENTITIES_OR_EXPRESSION_OUTCOMES_INSPECTED",
+  "blinding": {
+    "sender_receiver_separation": "MANDATORY",
+    "forbidden_inputs": ["results/02_phase2a", "results/02_phase2a1", "results/02_phase2a2", "results/02_phase2b"],
+    "forbidden_analyses": ["NicheNet ligand activity", "CellChat", "receptor compatibility", "PE target overlap", "therapeutic reversal", "Phase 4"]
+  },
+  "upstream_sha256": {
+    "results/00_dataset_audit_phase0b/hucmsc_sender_redundancy_registry.csv": "a8969d720edd48a335b355da81e938728ea540405a86523f8d241bcf0d914ff7",
+    "data/raw/GSE182158_family.soft.gz": "1b9cdae4b3e8a53feee0aca67c4d8be3eeaf3ed8bdd780b06538b30b93e1be42",
+    "data/raw/GSE199071_family.soft.gz": "d6f4441d0ad7b95e59fb522176ab6fa94c9e96c2858ee8f20cdd3c5e26527a3b",
+    "data/raw/GSE117837_family.soft.gz": "0d6fa0e9a689bd9b0276ba8ce302661068626a22d0d835ff49cea5afea651498"
+  },
+  "dataset_roles": {
+    "GSE182158": "HUCMSC_ATLAS_CONTEXT",
+    "GSE199071": "INDEPENDENT_HUCMSC_BASELINE_REPLICATION",
+    "GSE117837": "HUCMSC_INFLAMMATORY_LICENSING"
+  },
+  "baseline_core": ["GSE182158", "GSE199071"],
+  "ligand_universe": {
+    "primary": "unique source/from genes in NicheNet lr_network_human_21122021.rds",
+    "url": "https://zenodo.org/records/7074291/files/lr_network_human_21122021.rds",
+    "independent_annotation": "OmniPath intercell API protein annotations",
+    "omnipath_url": "https://omnipathdb.org/intercell?format=tsv&fields=genesymbol&entity_types=protein&license=academic",
+    "policy": "retain the complete NicheNet ligand universe regardless of hUC-MSC or PE expression; annotate but do not filter using OmniPath"
+  },
+  "baseline_processing": {
+    "input": "true Cell Ranger sparse raw count matrices",
+    "unit": "biological donor",
+    "gene_symbol_collapse": "sum feature rows sharing the same non-empty gene symbol before donor summaries",
+    "reported_metrics": ["pseudobulk_CPM", "fraction_cells_count_gt_zero", "within_donor_ligand_rank_percentile"],
+    "no_cell_level_inference": true
+  },
+  "baseline_detection": {
+    "donor_supported": "pseudobulk_CPM >= 1 and fraction_expressing_cells >= 0.10",
+    "donor_low_detected": "pseudobulk_CPM >= 0.10 and fraction_expressing_cells >= 0.01",
+    "robust_gse182158": "both 2/2 UC donors donor_supported",
+    "robust_gse199071": "at least 3/4 HUCMSC donors donor_supported",
+    "ROBUST_BASELINE_SENDER": "both dataset-specific robust rules satisfied",
+    "MULTIDATASET_LOW_EXPRESSION": "not robust; donor_low_detected in at least one donor of each core dataset",
+    "DATASET_SPECIFIC": "donor_supported in at least two donors of exactly one core dataset and no donor_low_detected evidence in the other",
+    "DONOR_VARIABLE": "donor_supported in at least two donors overall but no earlier class applies",
+    "NOT_RELIABLY_EXPRESSED": "all remaining ligands",
+    "donor_variable_flag": "within either core dataset, expressing-fraction range >=0.25 or ligand-rank IQR >=0.20"
+  },
+  "licensing_processing": {
+    "input": "GSE117837 submitted raw read-count matrix",
+    "valid_strata": ["Donor1_P5", "Donor2_P2", "Donor2_P5"],
+    "invalid_unpaired_stratum": "Donor2_P0 untreated only",
+    "cell_summary": "condition pseudobulk CPM and fraction of cells with count >0",
+    "effect": "log2((stimulated_CPM + 0.5)/(untreated_CPM + 0.5))",
+    "donor_summary": "Donor1 P5 effect; Donor2 median of P2 and P5 effects",
+    "no_cell_level_p_values": true
+  },
+  "licensing_classification": {
+    "effect_threshold_abs_log2": 0.5,
+    "retained_after_stimulation": "stimulated_CPM >=1 in every licensing donor",
+    "PASSAGE_DEPENDENT": "Donor2 P2/P5 effects have opposite signs with max absolute effect >=0.5, or their absolute difference >=1.0",
+    "DONOR_DEPENDENT": "not passage-dependent; donor-level effects have opposite signs and max absolute effect >=0.5",
+    "LICENSING_CONSISTENT_UP": "not passage/donor-dependent; both donor effects >=0.5 and all three stratum effects >0",
+    "LICENSING_CONSISTENT_DOWN": "not passage/donor-dependent; both donor effects <=-0.5 and all three stratum effects <0",
+    "NO_CLEAR_LICENSING_EFFECT": "all remaining ligands"
+  },
+  "licensing_programs": {
+    "resource": "MSigDB 2026.1.Hs Hallmark, Reactome and GO Biological Process",
+    "gmt_sha256": {
+      "h.all.v2026.1.Hs.symbols.gmt": "eecaf6dad908334ae885406ec72bdc0646d8917588ed7c219fac92fc5363f596",
+      "c2.cp.reactome.v2026.1.Hs.symbols.gmt": "5d61f289a2400cddfbb3a3353829fd2284a360bbe50f2093b566c4b7bea93341",
+      "c5.go.bp.v2026.1.Hs.symbols.gmt": "9be09dd06d6652566eb52eed530d62e6dfecc4365c1e81afd6f0b7f2e86dd4f9"
+    },
+    "gene_set_size": "15 to 500 measured genes",
+    "method": "cameraPR on the mean of two donor-level ligand-independent gene effects; inter-gene correlation 0.01",
+    "consistency": "full-family BH FDR <0.05, same program direction in both donors, and same Donor2 P2/P5 program direction",
+    "label": "HUCMSC_LICENSING_PROGRAM_NOT_PE_THERAPEUTIC_PROGRAM"
+  },
+  "sender_hierarchy": {
+    "S1": "ROBUST_BASELINE_SENDER plus LICENSING_CONSISTENT_UP or DOWN plus retained expression after stimulation in both donors",
+    "S2": "ROBUST_BASELINE_SENDER not meeting S1; includes constitutive and variable licensing responses",
+    "S3": "MULTIDATASET_LOW_EXPRESSION, DATASET_SPECIFIC or DONOR_VARIABLE baseline evidence",
+    "S4": "NOT_RELIABLY_EXPRESSED",
+    "phase4_candidates": "S1 and S2 only; label HIGH_CONFIDENCE_SENDER_CANDIDATE, never therapeutic",
+    "candidate_order": "S1 before S2; then descending supported baseline donor count, descending minimum of the two dataset median rank percentiles, descending absolute median licensing donor effect, then gene symbol"
+  },
+  "source_context": {
+    "method": "GSE182158 donor-level ligand rank percentiles; descriptive median UC minus median non-UC MSC rank",
+    "interpretation": "protocol/tissue/source context only; never a causal UC-origin effect and never required for baseline robustness"
+  },
+  "gate_rule": {
+    "GO_TO_PHASE4": "at least 3 independent licensing donors, at least 25 S1 and at least 75 S1+S2 candidates, no critical data-layer risk",
+    "GO_TO_PHASE4_WITH_RESTRICTIONS": "six usable baseline donors across two datasets, both licensing donors usable, at least 25 S1+S2 candidates, no critical data-layer risk",
+    "REVISE_SENDER_FRAMEWORK": "10 to 24 S1+S2 candidates or one core data arm not fully usable",
+    "NO_GO_SENDER_ARM": "fewer than 10 S1+S2 candidates or donor identity/data layer invalid"
+  },
+  "random_seed": 20260810
+}

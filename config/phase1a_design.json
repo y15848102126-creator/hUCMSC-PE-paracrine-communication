@@ -1,0 +1,101 @@
+{
+  "audit_date": "2026-08-09",
+  "evidence_cutoff": "2026-08-08",
+  "final_gate": "GO_TO_PHASE1B_WITH_RESTRICTIONS",
+  "strategy": {
+    "gse75010": "STRATEGY_A",
+    "statement": "Use the 157 direct GSE75010 BioBank samples as one cohort and the seven historical source cohorts separately. Never add the 330-sample composite as another independent cohort.",
+    "source": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE75010"
+  },
+  "cohorts": {
+    "GSE234729_ANALYTIC_123": {
+      "accession": "GSE234729",
+      "role": "BULK_REPLICATION_CONDITIONAL",
+      "phase1b_main": false,
+      "expected_case_n": 50,
+      "expected_control_n": 73,
+      "reason": "All 123 normalized-expression columns are recoverable, including 12 GSE186257 reanalyses, but public sample-level gestational-age and sequencing-batch crosswalks are not recoverable. Use published adjusted evidence or a recovered crosswalk; do not fit an unadjusted primary disease model.",
+      "expression_unit": "DESeq2 size-factor normalized, gene-filtered counts",
+      "transform": "log2(normalized_count + 1) for QC only",
+      "platform": "GPL24676",
+      "source": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE234729|https://pmc.ncbi.nlm.nih.gov/articles/PMC10843761/"
+    },
+    "GSE75010_BIOBANK": {
+      "accession": "GSE75010",
+      "role": "DISCOVERY",
+      "phase1b_main": true,
+      "expected_case_n": 63,
+      "expected_control_n": 53,
+      "reason": "Exclude chronic-hypertension strata from the primary contrast; retain 63 non-CH PE and 53 non-CH normotensive controls. Model gestational age and prespecified clinical fields; keep CH samples in the exclusion log and sensitivity inventory.",
+      "expression_unit": "normalized log2 microarray intensity",
+      "transform": "none",
+      "platform": "GPL6244",
+      "source": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE75010|https://pubmed.ncbi.nlm.nih.gov/27160201/"
+    },
+    "GSE30186": {
+      "accession": "GSE30186", "role": "DISCOVERY", "phase1b_main": true,
+      "expected_case_n": 6, "expected_control_n": 6,
+      "reason": "Independent Chinese placental cohort; sample-level gestational age is unavailable and must be treated as a risk, not imputed.",
+      "expression_unit": "quantile-normalized Illumina intensity with negative background-adjusted values",
+      "transform": "log2(value - cohort_min + 1)", "platform": "GPL10558",
+      "source": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE30186|https://pubmed.ncbi.nlm.nih.gov/22702245/"
+    },
+    "GSE10588": {
+      "accession": "GSE10588", "role": "DISCOVERY", "phase1b_main": true,
+      "expected_case_n": 17, "expected_control_n": 26,
+      "reason": "Independent severe-PE placental cohort. Individual gestational ages and most clinical covariates are unavailable, so cohort-specific estimates require sensitivity interpretation.",
+      "expression_unit": "quantile-normalized ABI chemiluminescence intensity",
+      "transform": "log2(value + 1)", "platform": "GPL2986",
+      "source": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE10588|https://pubmed.ncbi.nlm.nih.gov/19249095/"
+    },
+    "GSE24129": {
+      "accession": "GSE24129", "role": "DISCOVERY", "phase1b_main": true,
+      "expected_case_n": 8, "expected_control_n": 8,
+      "reason": "Use PE and normotensive groups only; exclude eight isolated-FGR samples from the PE contrast while preserving them in the freeze and exclusion log.",
+      "expression_unit": "normalized log2 Affymetrix expression", "transform": "none", "platform": "GPL6244",
+      "source": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE24129|https://pmc.ncbi.nlm.nih.gov/articles/PMC3199758/"
+    },
+    "GSE25906": {
+      "accession": "GSE25906", "role": "DISCOVERY", "phase1b_main": true,
+      "expected_case_n": 23, "expected_control_n": 37,
+      "reason": "Independent placental cohort with recoverable gestational age, fetal sex, labor-induction and batch labels.",
+      "expression_unit": "log2-transformed quantile-normalized Illumina intensity", "transform": "none", "platform": "GPL6102",
+      "source": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE25906|https://pmc.ncbi.nlm.nih.gov/articles/PMC3039036/"
+    },
+    "GSE43942": {
+      "accession": "GSE43942", "role": "DISCOVERY", "phase1b_main": true,
+      "expected_case_n": 5, "expected_control_n": 7,
+      "reason": "Independent caesarean placental cohort; sample-level gestational age is unavailable.",
+      "expression_unit": "RMA/quantile-normalized NimbleGen intensity on linear-looking scale", "transform": "log2(value + 1)", "platform": "GPL10191",
+      "source": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE43942|https://pubmed.ncbi.nlm.nih.gov/23544093/"
+    },
+    "GSE4707": {
+      "accession": "GSE4707", "role": "SUBTYPE_VALIDATION", "phase1b_main": false,
+      "expected_case_n": 10, "expected_control_n": 4,
+      "reason": "EOPE/LOPE two-color placental arrays use a pooled three-normal-placenta common reference; useful for subtype direction checks, not core stable-gene discovery.",
+      "expression_unit": "Agilent log-ratio to pooled reference", "transform": "none", "platform": "GPL1708",
+      "source": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE4707|https://pubmed.ncbi.nlm.nih.gov/16860862/"
+    },
+    "GSE44711": {
+      "accession": "GSE44711", "role": "SUBTYPE_VALIDATION", "phase1b_main": false,
+      "expected_case_n": 8, "expected_control_n": 8,
+      "reason": "EOPE chorionic-villus cohort with strong case-control gestational-age separation; subtype validation only.",
+      "expression_unit": "background-subtracted quantile-normalized Illumina intensity", "transform": "log2(value - cohort_min + 1)", "platform": "GPL10558",
+      "source": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE44711|https://pubmed.ncbi.nlm.nih.gov/23770704/"
+    },
+    "GSE190639": {
+      "accession": "GSE190639", "role": "SUBTYPE_VALIDATION", "phase1b_main": false,
+      "expected_case_n": 19, "expected_control_n": 13,
+      "reason": "NanoString immune panel is targeted, not genome-wide; retain for EOPE/LOPE validation only.",
+      "expression_unit": "nSolver-processed NanoString counts", "transform": "log2(value + 1) for QC", "platform": "GPL31059",
+      "source": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE190639|https://pubmed.ncbi.nlm.nih.gov/34992598/"
+    },
+    "GSE272342": {
+      "accession": "GSE272342", "role": "DESIGN_SPECIFIC_SENSITIVITY", "phase1b_main": false,
+      "expected_case_n": 20, "expected_control_n": 9,
+      "reason": "Independent unit is pregnancy (29), not placenta library (45). All controls are twin pregnancies while cases include singleton and twin pregnancies; never claim general PE replication.",
+      "expression_unit": "raw HTSeq counts per placenta library", "transform": "deferred; pregnancy-aware sensitivity model only", "platform": "GPL16791",
+      "source": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE272342|https://www.medrxiv.org/content/10.1101/2025.08.14.25333727v1"
+    }
+  }
+}

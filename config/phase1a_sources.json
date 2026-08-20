@@ -1,0 +1,102 @@
+{
+  "audit_date": "2026-08-09",
+  "evidence_cutoff": "2026-08-08",
+  "geo_soft_accessions": [
+    "GSE234729",
+    "GSE186257",
+    "GSE75010",
+    "GSE30186",
+    "GSE10588",
+    "GSE24129",
+    "GSE25906",
+    "GSE43942",
+    "GSE4707",
+    "GSE44711",
+    "GSE190639",
+    "GSE272342"
+  ],
+  "pubmed_ids": [
+    "37949031",
+    "36853788",
+    "27160201",
+    "22702245",
+    "19249095",
+    "21810232",
+    "21183218",
+    "23544093",
+    "16860862",
+    "23770704",
+    "34992598"
+  ],
+  "europe_pmc_full_text": [],
+  "europe_pmc_supplements": [],
+  "files": [
+    {
+      "name": "PMC10843761_article.html",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10843761/",
+      "kind": "PUBLIC_ARTICLE_HTML"
+    },
+    {
+      "name": "PMC10081686_article.html",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10081686/",
+      "kind": "PUBLIC_ARTICLE_HTML"
+    },
+    {
+      "name": "PMC10843761_Supplemental_Table.docx",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/10843761/bin/NIHMS1945468-supplement-Supplemental_Table.docx",
+      "kind": "PUBLIC_CLINICAL_SUPPLEMENT",
+      "retrieval": "BROWSER_OPTIONAL"
+    },
+    {
+      "name": "PMC10843761_Supplemental_Methods.docx",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/10843761/bin/NIHMS1945468-supplement-Supplemental_Methods.docx",
+      "kind": "PUBLIC_METHODS_SUPPLEMENT",
+      "retrieval": "BROWSER_OPTIONAL"
+    },
+    {
+      "name": "PMC10843761_Supplemental_tables.xlsx",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/10843761/bin/NIHMS1945468-supplement-Supplemental_table.xlsx",
+      "kind": "PUBLIC_GENE_TABLE_SUPPLEMENT",
+      "retrieval": "BROWSER_OPTIONAL"
+    },
+    {
+      "name": "PMC10081686_Supplementary_table_2.xlsx",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/10081686/bin/NIHMS1882525-supplement-Supplementary_table_2.xlsx",
+      "kind": "PUBLIC_EXPRESSION_SUPPLEMENT",
+      "retrieval": "BROWSER_OPTIONAL"
+    },
+    {
+      "name": "PMC10081686_Supplementary_table_10.xlsx",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/10081686/bin/NIHMS1882525-supplement-Supplementary_table_10.xlsx",
+      "kind": "PUBLIC_EXPRESSION_SUPPLEMENT",
+      "retrieval": "BROWSER_OPTIONAL"
+    },
+    {
+      "name": "PMC10081686_Supplementary_table_3.xlsx",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/10081686/bin/NIHMS1882525-supplement-supplementary_table_3.xlsx",
+      "kind": "PUBLIC_EXPRESSION_SUPPLEMENT",
+      "retrieval": "BROWSER_OPTIONAL"
+    },
+    {
+      "name": "PMC10081686_Supplementary_Figures_and_Tables.docx",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/10081686/bin/NIHMS1882525-supplement-Supplementary_Figures_and_Tables.docx",
+      "kind": "PUBLIC_CLINICAL_AND_METHODS_SUPPLEMENT",
+      "retrieval": "BROWSER_OPTIONAL"
+    },
+    {
+      "name": "GSE234729_deseq2_normalized_filtered.txt.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE234nnn/GSE234729/suppl/GSE234729_Plac_samples_diff_ancestry_Deseq2_norm_filtered.txt.gz",
+      "kind": "PUBLIC_PROCESSED_EXPRESSION"
+    },
+    {
+      "name": "GSE75010_complete_dataset.csv.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE75nnn/GSE75010/suppl/GSE75010_complete_dataset.csv.gz",
+      "kind": "PUBLIC_COMPOSITE_EXPRESSION"
+    },
+    {
+      "name": "hgnc_complete_set.txt",
+      "url": "https://storage.googleapis.com/public-download-files/hgnc/tsv/tsv/hgnc_complete_set.txt",
+      "kind": "GENE_IDENTIFIER_REFERENCE"
+    }
+  ]
+}

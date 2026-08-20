@@ -1,0 +1,3 @@
+numpy==2.3.5
+pandas==3.0.1
+# R/Bioconductor packages and exact versions are recorded in software_versions.txt.

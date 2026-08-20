@@ -1,0 +1,5 @@
+"dataset","stratum_id","donor_id","passage","UNTREATED","IFNG_TNFA_STIMULATED","valid_within_stratum_contrast","cytokine","duration_hours","biological_replication_unit","source_url"
+"GSE117837","Donor1_P5","Donor1","P5",52,58,"YES","IFN-gamma 10 ng/mL + TNF-alpha 10 ng/mL",12,"DONOR_NOT_CELL_NOT_PASSAGE","https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE117837|https://pmc.ncbi.nlm.nih.gov/articles/PMC6506509/"
+"GSE117837","Donor2_P0","Donor2","P0",50,0,"NO_UNPAIRED","IFN-gamma 10 ng/mL + TNF-alpha 10 ng/mL",12,"DONOR_NOT_CELL_NOT_PASSAGE","https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE117837|https://pmc.ncbi.nlm.nih.gov/articles/PMC6506509/"
+"GSE117837","Donor2_P2","Donor2","P2",50,50,"YES","IFN-gamma 10 ng/mL + TNF-alpha 10 ng/mL",12,"DONOR_NOT_CELL_NOT_PASSAGE","https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE117837|https://pmc.ncbi.nlm.nih.gov/articles/PMC6506509/"
+"GSE117837","Donor2_P5","Donor2","P5",51,50,"YES","IFN-gamma 10 ng/mL + TNF-alpha 10 ng/mL",12,"DONOR_NOT_CELL_NOT_PASSAGE","https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE117837|https://pmc.ncbi.nlm.nih.gov/articles/PMC6506509/"

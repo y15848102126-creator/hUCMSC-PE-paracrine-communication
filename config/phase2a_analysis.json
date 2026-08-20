@@ -1,0 +1,77 @@
+{
+  "phase": "PHASE_2A",
+  "analysis_date": "2026-08-09",
+  "primary_dataset": {
+    "study_id": "Admati_2023_FIGSHARE",
+    "publication_doi": "10.1016/j.medj.2023.07.005",
+    "publication_pmid": "37572658",
+    "figshare_doi": "10.6084/m9.figshare.23264102.v1",
+    "figshare_file_id": "41003240",
+    "count_layer": "published integer UMI count table; no transformed/integrated layer",
+    "tissue_compartment": "placental cotyledon / villous placenta; not decidua basalis",
+    "biological_unit": "donorID (pregnancy)",
+    "library_unit": "sample (may repeat within donor)"
+  },
+  "eligibility": {
+    "minimum_patients_per_group": 3,
+    "minimum_cells_per_patient_celltype": 20,
+    "minimum_pseudobulk_library_umi": 10000,
+    "minimum_gene_cpm": 1,
+    "minimum_gene_patients": 3,
+    "rules_frozen_before_outcome_analysis": true
+  },
+  "contrasts": {
+    "EOPE": {"case": "EOPE", "control": "EARLY_CONTROL", "primary_formula": "~ disease"},
+    "LOPE": {"case": "LOPE", "control": "LATE_CONTROL", "primary_formula": "~ disease"},
+    "COMBINED_PE_SECONDARY": {"case": "EOPE+LOPE", "control": "EARLY_CONTROL+LATE_CONTROL", "formula": "~ onset_stratum + disease"}
+  },
+  "de": {
+    "method": "edgeR quasi-likelihood negative-binomial GLM",
+    "normalization": "TMM",
+    "dispersion": "estimateDisp robust=TRUE",
+    "test": "glmQLFit robust=TRUE plus glmQLFTest",
+    "gene_filter": "CPM >=1 in >=3 eligible patient pseudobulks",
+    "fdr_method": "BH within cell type and contrast",
+    "fold_change_cutoff": null
+  },
+  "gene_sets": {
+    "release": "MSigDB 2026.1.Hs",
+    "collections": ["Hallmark", "Reactome", "GO Biological Process"],
+    "files": [
+      "h.all.v2026.1.Hs.symbols.gmt",
+      "c2.cp.reactome.v2026.1.Hs.symbols.gmt",
+      "c5.go.bp.v2026.1.Hs.symbols.gmt"
+    ],
+    "method": "limma cameraPR competitive ranked gene-set test on signed edgeR quasi-likelihood statistic",
+    "inter_gene_correlation": 0.01,
+    "min_size": 15,
+    "max_size": 500,
+    "fdr_method": "BH across the combined frozen three-collection universe within cell type and contrast",
+    "program_fdr": 0.05
+  },
+  "program_classification": {
+    "SHARED_PE": "EOPE and LOPE FDR<0.05 with concordant NES sign",
+    "EOPE_ENRICHED": "EOPE FDR<0.05 and LOPE FDR>=0.10 or not estimable",
+    "LOPE_ENRICHED": "LOPE FDR<0.05 and EOPE FDR>=0.10 or not estimable",
+    "UNSTABLE": "opposite EOPE/LOPE NES directions when either subtype FDR<0.05, or single-subtype significance with the other subtype FDR in [0.05,0.10)",
+    "direction_labels": ["UP_IN_PE_PROGRAM", "DOWN_IN_PE_PROGRAM"]
+  },
+  "regulons": {
+    "network": "CollecTRI human signed TF-target network",
+    "method": "univariate linear model activity on signed DE statistics",
+    "minimum_targets": 10,
+    "fdr_method": "BH within cell type and contrast",
+    "exploratory": true
+  },
+  "outlier_policy": "flag only; never remove because disease separation improves",
+  "phase2b_gate": {
+    "robust_program": "program FDR<0.05 and every valid leave-one-patient-out patient-score effect retains the full effect direction",
+    "GO_TO_PHASE2B": ">=2 receiver cell types each have >=3 robust programs, >=1 SHARED_PE program exists, both subtype-control groups have >=5 qualified controls, and no unresolved count-layer provenance risk",
+    "GO_TO_PHASE2B_WITH_RESTRICTIONS": ">=2 receiver cell types each have >=3 robust programs and >=1 SHARED_PE program exists, but small-control or count-layer provenance restrictions remain",
+    "REMAIN_IN_PHASE2A": "at least one significant program exists but robustness/shared-program criteria are not met",
+    "NO_GO": "no robust significant program is identified or donor/disease identity validation fails"
+  },
+  "seed": 20260809,
+  "phase1b_integration": "Phase 1B is frozen negative and is not used to select genes or programs in Phase 2A",
+  "forbidden": ["hUC-MSC sender analysis", "Phase 2B bulk validation", "NicheNet", "CellChat", "WGCNA", "machine learning", "therapeutic inference"]
+}

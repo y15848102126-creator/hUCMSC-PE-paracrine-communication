@@ -1,0 +1,106 @@
+{
+  "phase": "PHASE_2A_2",
+  "analysis_date": "2026-08-09",
+  "history_policy": {
+    "phase2a_label": "LEGACY_COUNT_MODEL_DISCOVERY",
+    "phase2a1_gate": "REVISE_RECEIVER_FRAMEWORK",
+    "write_protection": ["results/02_phase2a", "results/02_phase2a1"],
+    "frozen_sha256": {
+      "results/02_phase2a/programs/shared_pe_programs.csv": "39d4d81e6e0b1675cb8f9b05c5bf69fbc63332901326c281bd4c628eedabe7f6",
+      "results/02_phase2a/programs/eope_specific_programs.csv": "e6d48025272a3037adcea04ea28b24a31bbbec4ce073cf9d9cdeb8035e8841ed",
+      "results/02_phase2a/programs/lope_specific_programs.csv": "8219dad9eed3789ce19f6e30d5a08f30cf16ae75f79a63afd742802461c07842",
+      "results/02_phase2a/metadata/pseudobulk_eligibility.csv": "c33dc256a326c231ca81831374206aa92353b59bad31940a3fc764d111172201",
+      "results/02_phase2a1/shared_program_modules.csv": "389b37c127833eacaccc8644a8266c4298708cc995c97a9c201c79b687491a39",
+      "results/02_phase2a1/yang_lope_replication.csv": "c7bb372115b88d56039d76724e85a1f8266fb129da717be9a21244e274c4d8fa"
+    }
+  },
+  "admati_provenance_decision": "PUBLIC_MATRIX_NORMALIZED_RAW_NOT_PUBLIC",
+  "corrected_route": "ROUTE_B_NORMALIZED_EXPRESSION",
+  "expression_layer": {
+    "figshare_article": "23264102.v1",
+    "figshare_file_id": 41003240,
+    "filename": "sc_PE_allcells_with_metadata_29-May-2023.txt.zip",
+    "zip_sha256": "1b317645daf5331bb6ac4d7d858fea3f78deb712dcfbce2df5f386c161d88446",
+    "values": "per-cell library-size normalized to 10000 then ceiled; not unmodified UMI",
+    "exact_cell_aggregation": "sum ceiled normalized values within donor x harmonized cell type divided by eligible cell count",
+    "donor_transform": "log2(donor_celltype_gene_mean + 1)",
+    "no_negative_binomial_likelihood": true
+  },
+  "eligibility": {
+    "patient_celltype_rows": "reuse Phase 2A include_in_contrast=YES exactly",
+    "minimum_patients_per_group": 3,
+    "minimum_cells_per_patient_celltype": 20,
+    "gene_filter": "donor mean normalized expression >0 in >=3 eligible donor summaries, without disease-label-dependent filtering",
+    "outlier_policy": "flag only; no outcome-driven exclusion"
+  },
+  "contrasts": {
+    "EOPE": {"case": "EOPE", "control": "EARLY_CONTROL", "formula": "~ disease"},
+    "LOPE": {"case": "LOPE", "control": "LATE_CONTROL", "formula": "~ disease"}
+  },
+  "gene_model": {
+    "method": "limma empirical-Bayes linear model",
+    "input": "continuous log2 donor mean normalized expression",
+    "equal_patient_weight": true,
+    "eBayes": {"trend": true, "robust": true},
+    "fdr": "BH within cell type and contrast",
+    "fold_change_threshold": null
+  },
+  "gene_sets": {
+    "release": "MSigDB 2026.1.Hs",
+    "collections": ["Hallmark", "Reactome", "GO Biological Process"],
+    "method": "cameraPR on signed corrected limma moderated t statistics",
+    "inter_gene_correlation": 0.01,
+    "minimum_size": 15,
+    "maximum_size": 500,
+    "tier1_fdr": "BH within the 20 frozen hypotheses separately for EOPE and LOPE",
+    "tier2_fdr": "BH across the combined frozen three-collection universe within cell type and contrast",
+    "program_fdr": 0.05
+  },
+  "tier1_classification": {
+    "CORRECTED_SHARED_SUPPORT": "legacy direction agrees and BH FDR<0.05 in both EOPE and LOPE",
+    "EOPE_ONLY_SUPPORT": "legacy direction agrees and BH FDR<0.05 in EOPE, but not LOPE",
+    "LOPE_ONLY_SUPPORT": "legacy direction agrees and BH FDR<0.05 in LOPE, but not EOPE",
+    "DIRECTION_ONLY": "legacy direction agrees in both EOPE and LOPE, with neither subtype BH FDR<0.05",
+    "NOT_SUPPORTED": "any other pattern, including an opposite direction in either subtype without qualifying one-subtype support"
+  },
+  "tier2_classification": {
+    "CORRECTED_SHARED_PE": "EOPE and LOPE BH FDR<0.05 with concordant effect direction",
+    "CORRECTED_EOPE_ENRICHED": "EOPE BH FDR<0.05 and LOPE BH FDR>=0.10 or not estimable",
+    "CORRECTED_LOPE_ENRICHED": "LOPE BH FDR<0.05 and EOPE BH FDR>=0.10 or not estimable",
+    "CORRECTED_UNSTABLE": "opposite subtype directions when either is significant, or single-subtype significance with other subtype FDR in [0.05,0.10)",
+    "CORRECTED_NOT_SIGNIFICANT": "none of the above",
+    "interpretation": "EXPLORATORY_CORRECTED_REDISCOVERY"
+  },
+  "module_rule": {
+    "corrected_admati_support": ">=50% of constituent sets agree with the legacy direction in both subtypes and >=1 constituent has Tier-1 FDR<0.05 in either subtype",
+    "directional_only": ">=50% of constituent sets agree in both subtypes but no constituent has Tier-1 FDR<0.05",
+    "not_supported": "fewer than 50% of constituents agree in both subtypes",
+    "LEVEL_A": "corrected Admati support plus independent external single-cell directional support",
+    "LEVEL_B": "corrected Admati support but external single-cell is not evaluable",
+    "LEVEL_C": "directional corrected support only",
+    "LEVEL_D": "not supported after corrected analysis",
+    "phase2b_candidate": "LEVEL_A or LEVEL_B with corrected Admati support; no bulk evidence is consulted"
+  },
+  "external_validation": {
+    "zheng_pass_conditions": [
+      "exact five-subject crosswalk",
+      "EOPE/control labels and elective C-section status attributable to each donor",
+      "donor-linked expression matrices",
+      "conservative cell-type mapping",
+      "no unresolved contradiction that invalidates the EOPE estimand"
+    ],
+    "zheng_failure_action": "write NOT_RUN rows with reason; do not manufacture targeted statistics",
+    "yang": "preserve Phase 2A.1 values unchanged; mechanically update evidence labels only"
+  },
+  "clinical_restrictions": {
+    "EOPE_delivery_mode": "NON_ESTIMABLE",
+    "EOPE_induction": "NON_ESTIMABLE",
+    "EOPE_IUGR": "POSITIVITY_ABSENT",
+    "EOPE_other_covariates": "LIMITED_BY_EARLY_CONTROL_N3",
+    "LOPE_Csection_sensitivity": "ESTIMABLE",
+    "LOPE_induction": "NON_ESTIMABLE",
+    "LOPE_IUGR": "POSITIVITY_INCOMPLETE"
+  },
+  "seed": 20260809,
+  "forbidden": ["Phase 2B bulk validation", "hUC-MSC sender analysis", "NicheNet", "CellChat", "therapeutic inference", "machine learning"]
+}

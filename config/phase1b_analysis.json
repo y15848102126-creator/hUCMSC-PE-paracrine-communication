@@ -1,0 +1,72 @@
+{
+  "freeze_date": "2026-08-09",
+  "core_cohorts": [
+    "GSE75010_BIOBANK",
+    "GSE30186",
+    "GSE10588",
+    "GSE24129",
+    "GSE25906",
+    "GSE43942"
+  ],
+  "primary_formulas": {
+    "GSE75010_BIOBANK": "~ disease",
+    "GSE30186": "~ disease",
+    "GSE10588": "~ disease",
+    "GSE24129": "~ disease",
+    "GSE25906": "~ disease + batch",
+    "GSE43942": "~ disease"
+  },
+  "sensitivity_formulas": {
+    "GSE75010_BIOBANK_GA": "~ disease + GA_c",
+    "GSE75010_BIOBANK_GA_SEX": "~ disease + GA_c + fetal_sex",
+    "GSE25906_GA": "~ disease + batch + GA_c",
+    "GSE25906_GA_SEX": "~ disease + batch + GA_c + fetal_sex",
+    "GSE25906_GA_SEX_LABOR": "~ disease + batch + GA_c + fetal_sex + labor"
+  },
+  "limma": {
+    "trend": true,
+    "robust": true,
+    "cohort_level_filter": "NONE_ALL_ESTIMABLE_GENES"
+  },
+  "meta_analysis": {
+    "method": "REML",
+    "inference": "MODIFIED_KNHA_T",
+    "minimum_primary_cohorts": 4,
+    "minimum_valid_loco_cohorts": 3,
+    "bh_family": "all genes with at least 4 primary cohort effects"
+  },
+  "stable_rule": {
+    "meta_fdr_lt": 0.05,
+    "direction_consistency_gte": 0.75,
+    "i2_lte": 60.0,
+    "all_valid_loco_same_direction": true,
+    "valid_loco_fdr_lt": 0.10,
+    "valid_loco_fdr_proportion_gte": 0.80,
+    "absolute_meta_log2fc_cutoff": null
+  },
+  "covariate_sensitivity_flags": {
+    "direction_flip": true,
+    "attenuation_ratio_lt": 0.5,
+    "incremental_relative_change_denominator_floor": 0.05,
+    "sex_incremental_relative_change_gt": 0.25,
+    "labor_incremental_relative_change_gt": 0.25
+  },
+  "phase1c_gate": {
+    "go_min_stable_genes": 25,
+    "go_min_standardized_direction_support": 0.80,
+    "go_min_full_covariate_sign_retention": 0.80,
+    "go_with_restrictions_min_stable_genes": 10,
+    "remain_min_stable_genes": 1,
+    "no_go_if_zero_stable": true
+  },
+  "random_seed": 20260809,
+  "forbidden_analyses": [
+    "pathway_enrichment",
+    "WGCNA",
+    "machine_learning",
+    "scRNA_disease_state",
+    "CellChat",
+    "NicheNet",
+    "therapeutic_inference"
+  ]
+}

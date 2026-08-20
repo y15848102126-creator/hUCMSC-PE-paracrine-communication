@@ -1,0 +1,53 @@
+# Local operating-system and editor artifacts
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Local environments, caches, and temporary outputs
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.Rhistory
+.RData
+.Rproj.user/
+.cache/
+cache/
+tmp/
+temp/
+logs/*.log
+
+# Raw and controlled data must be retrieved from original providers
+data/raw/
+data/controlled/
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.bam
+*.cram
+*.sam
+*.mtx
+*.mtx.gz
+*.h5
+*.h5ad
+*.rds
+*.RData
+
+# Credentials and local configuration
+.env
+.env.*
+*.pem
+*.key
+credentials.*
+secrets.*
+
+# Local packaging artifacts
+*.zip
+*.tar
+*.tar.gz

@@ -1,0 +1,51 @@
+{
+  "audit_date": "2026-08-09",
+  "evidence_cutoff": "2026-08-08",
+  "files": [
+    {
+      "name": "GSE30186_RAW.tar",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE30nnn/GSE30186/suppl/GSE30186_RAW.tar",
+      "expected_bytes": 27443200,
+      "expected_sha256": "19dbc61b4da9ac807799a96081f4eae405079dad108b82a9d2bdb74678cdb948",
+      "kind": "PLATFORM_MANIFEST_ARCHIVE"
+    },
+    {
+      "name": "GSE30186_non_normalized.txt.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE30nnn/GSE30186/suppl/GSE30186_non_normalized.txt.gz",
+      "expected_bytes": 7051225,
+      "expected_sha256": "92df111da141a01697f9156c8c9c815dcb6631d3d4e8088256c615dfa76fc542",
+      "kind": "BEADSTUDIO_NON_NORMALIZED_SUMMARY"
+    },
+    {
+      "name": "GSE43942_RAW.tar",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE43nnn/GSE43942/suppl/GSE43942_RAW.tar",
+      "expected_bytes": 46172160,
+      "expected_sha256": "a0561b2064bc4eb46fbe633ffb4e53d9fb4c245c636100eb6fa04c16e8f152ce",
+      "kind": "NIMBLEGEN_PAIR_NDF_NGD_ARCHIVE"
+    },
+    {
+      "name": "GSE10588_RAW.tar",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE10nnn/GSE10588/suppl/GSE10588_RAW.tar",
+      "expected_bytes": 71444480,
+      "expected_sha256": "ad70dd58a73694301e344099e0b600d2f7ba0ebbe151493eb08271aa49b08270",
+      "kind": "ABI1700_TXT_ARCHIVE"
+    }
+  ],
+  "method_sources": [
+    {
+      "platform": "Illumina HumanHT-12 v4",
+      "url": "https://bioconductor.org/packages/devel/bioc/manuals/limma/man/limma.pdf",
+      "note": "limma neqc/normexp and quantile-normalization documentation"
+    },
+    {
+      "platform": "NimbleGen expression array",
+      "url": "https://bioconductor.org/packages/release/bioc/vignettes/oligo/inst/doc/oug.pdf",
+      "note": "oligo NimbleGen expression-array preprocessing guidance"
+    },
+    {
+      "platform": "ABI 1700",
+      "url": "https://www.bioconductor.org/packages/devel/bioc/vignettes/ABarray/inst/doc/ABarray.pdf",
+      "note": "ABarray control removal, quantile normalization and log2 guidance"
+    }
+  ]
+}

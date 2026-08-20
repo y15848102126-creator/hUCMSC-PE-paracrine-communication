@@ -1,0 +1,33 @@
+{
+  "phase": "PHASE_4B1_HUCMSC_PROTEIN_SOURCE_COMPLETENESS_CORRECTION",
+  "freeze_date": "2026-08-15",
+  "frozen_candidates": [
+    "ADAM17", "AGRN", "COL18A1", "DCN", "ENPP1", "FURIN", "GDF11", "GRN", "HSPG2",
+    "MDK", "NAMPT", "NID1", "PSEN1", "SERPINE1", "TIMP1", "TIMP2", "WNT5A"
+  ],
+  "immutable_upstream_sha256": {
+    "results/04_phase4a/integration/phase4a_candidate_hierarchy.csv": "0035af1d92b7b989f6b76084365439d83918b2aa9a1d72fd0a382abfe0316b4d",
+    "results/04_phase4a/integration/sender_receiver_evidence_matrix.csv": "730f10bf982d047994026b93b0b5b75064e2683d78b46fb0800e8f26333e19bb",
+    "results/04_phase4a/signed/signed_reversal_analysis.csv": "42bb647f338d371eeac7b4093a068602f78ba7ad98db91f6c04b7c553f73ca9a",
+    "results/04_phase4a/freeze/phase4_receiver_hierarchy.csv": "e31778300ab7d65f84e26f3d59b8152ca1f1a591e973eaeb26a40192925e0644",
+    "results/04_phase4b/perturbation/empirical_signed_perturbation_evidence.csv": "891a4e13837403ca400417a60cba06d91fe190dccf244edf6204462698d1a806",
+    "results/04_phase4b/disease/pe_candidate_context_evidence.csv": "5ed486b8cce325469b32d47752c2c4779f4a69ccfc6d62d8f73076f96943c19f",
+    "results/04_phase4b/novelty/direct_msc_pe_overlap.csv": "297c35f4de9898074e6a8d98a7cdec37ce7c7c775878bccd5768ae84cd28e4b5",
+    "results/04_phase4b/integration/mixed_direction_stress_test.csv": "09c4993cfcfe323f30761be41088e13001c1aef7542ec6e7fd953c6564751b6a"
+  },
+  "auditable_compartments": [
+    "SOLUBLE_CONDITIONED_MEDIUM", "EV_EXOSOME", "EXTRACELLULAR_MATRIX", "CELL_LYSATE", "ENGINEERED_PRODUCT"
+  ],
+  "corrected_source_classes": [
+    "HUCMSC_SOLUBLE_CM_PROTEIN_DIRECT", "HUCMSC_EV_PROTEIN_DIRECT", "HUCMSC_ECM_PROTEIN_DIRECT",
+    "HUCMSC_PROTEIN_CELL_ONLY", "OTHER_MSC_EXTRACELLULAR_PROTEIN", "NO_PROTEIN_SOURCE_EVIDENCE",
+    "NOT_ASSESSABLE"
+  ],
+  "detection_rule": "DETECTED only when a public primary-study protein record, supplementary result, repository search output, or explicit orthogonal protein assay maps unambiguously by reviewed UniProt accession, HGNC symbol, protein name, or documented alias to one frozen candidate; incomplete tables cannot support NO",
+  "classification_rule": "Mechanically reuse config/phase4b_analysis.json deterministic_classification; HUCMSC_EV_PROTEIN_DIRECT, HUCMSC_SOLUBLE_CM_PROTEIN_DIRECT and HUCMSC_ECM_PROTEIN_DIRECT satisfy the former direct hUCMSC extracellular-protein predicate, while compartment remains explicit",
+  "unchanged_evidence_dimensions": [
+    "PHASE4A_COMPUTATIONAL_COMPATIBILITY", "GENERIC_SIGNED_PRIOR", "PARACRINE_TOPOLOGY",
+    "EMPIRICAL_SIGNED_PERTURBATION", "PE_DISEASE_CONTEXT", "DIRECT_MSC_PE_PRECEDENT",
+    "MIXED_DIRECTION_RISK", "RECEIVER_EVIDENCE_STRENGTH", "NOVELTY"
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "phase": "PHASE_4B_EXTERNAL_EVIDENCE_TRIANGULATION",
+  "freeze_date": "2026-08-15",
+  "external_evidence_review_status_at_freeze": "NOT_STARTED",
+  "phase4a_upstream_sha256": {
+    "results/04_phase4a/integration/phase4a_candidate_hierarchy.csv": "0035af1d92b7b989f6b76084365439d83918b2aa9a1d72fd0a382abfe0316b4d",
+    "results/04_phase4a/integration/sender_receiver_evidence_matrix.csv": "730f10bf982d047994026b93b0b5b75064e2683d78b46fb0800e8f26333e19bb",
+    "results/04_phase4a/signed/signed_reversal_analysis.csv": "42bb647f338d371eeac7b4093a068602f78ba7ad98db91f6c04b7c553f73ca9a",
+    "results/04_phase4a/freeze/phase4_receiver_hierarchy.csv": "e31778300ab7d65f84e26f3d59b8152ca1f1a591e973eaeb26a40192925e0644"
+  },
+  "frozen_candidates": [
+    "ADAM17", "AGRN", "COL18A1", "DCN", "ENPP1", "FURIN", "GDF11", "GRN", "HSPG2",
+    "MDK", "NAMPT", "NID1", "PSEN1", "SERPINE1", "TIMP1", "TIMP2", "WNT5A"
+  ],
+  "manuscript_facing_phase4a_label": "GENERIC_SIGNED_PRIOR_REVERSAL_CANDIDATE",
+  "protein_topology_categories": [
+    "CANONICAL_SOLUBLE_SECRETED", "ECM_ASSOCIATED", "SHED_SOLUBLE_FORM", "EXTRACELLULAR_ENZYME",
+    "MEMBRANE_ASSOCIATED", "INTRACELLULAR_OR_QUESTIONABLE_PARACRINE", "UNCERTAIN"
+  ],
+  "protein_source_categories": [
+    "HUCMSC_SECRETOME_DIRECT", "HUCMSC_PROTEIN_CELL_ONLY", "OTHER_MSC_SECRETOME",
+    "NO_PROTEIN_SOURCE_EVIDENCE", "CONTRADICTORY_SOURCE_EVIDENCE"
+  ],
+  "empirical_signed_categories": [
+    "EMPIRICAL_REVERSAL_SUPPORTED", "EMPIRICAL_DISEASE_CONCORDANT", "EMPIRICAL_SIGN_CONFLICT",
+    "NO_EMPIRICAL_SIGNED_EVIDENCE"
+  ],
+  "pe_context_categories": [
+    "PE_ASSOCIATION_ONLY", "PE_MECHANISTIC_PROTECTIVE", "PE_MECHANISTIC_AGGRAVATING",
+    "PE_CONTEXT_CONFLICTING", "NO_DIRECT_PE_EVIDENCE"
+  ],
+  "novelty_categories": [
+    "DIRECT_HUCMSC_PE_MECHANISM_ALREADY_SHOWN", "DIRECT_MSC_PE_MECHANISM_ALREADY_SHOWN",
+    "RELATED_MSC_MECHANISM", "NO_CLOSE_PRIOR_MECHANISM_FOUND"
+  ],
+  "mixed_direction_categories": [
+    "SIGN_CONSISTENT_ACROSS_TESTED_RECEIVERS", "MIXED_DIRECTION_CONTEXT_DEPENDENT",
+    "PREDOMINANTLY_DISEASE_CONCORDANT", "SIGNED_EVIDENCE_UNRESOLVED"
+  ],
+  "topology_plausible_for_primary_paracrine": [
+    "CANONICAL_SOLUBLE_SECRETED", "ECM_ASSOCIATED", "SHED_SOLUBLE_FORM", "EXTRACELLULAR_ENZYME"
+  ],
+  "deterministic_classification": {
+    "TRIANGULATED_HIGH_PRIORITY": "Phase4A Tier A; plausible topology; HUCMSC_SECRETOME_DIRECT; >=1 independent EMPIRICAL_REVERSAL_SUPPORTED R1/R2A axis; no empirical disease-concordant/conflict axis; no direct HUCMSC/MSC-PE mechanism already shown",
+    "TRIANGULATED_CONTEXT_DEPENDENT": "plausible topology plus direct hUCMSC or other-MSC extracellular protein evidence plus empirical reversal evidence, but Phase4A/empirical receiver-specific sign conflict exists",
+    "COMPUTATIONAL_ONLY": "no independent extracellular protein support and no independent empirical reversal support",
+    "BIOPHYSICALLY_WEAK_PARACRINE": "topology is MEMBRANE_ASSOCIATED, INTRACELLULAR_OR_QUESTIONABLE_PARACRINE, or UNCERTAIN",
+    "KNOWN_MECHANISM_LOW_NOVELTY": "DIRECT_HUCMSC_PE_MECHANISM_ALREADY_SHOWN or DIRECT_MSC_PE_MECHANISM_ALREADY_SHOWN"
+  },
+  "gate_rule": {
+    "GO_TO_FINAL_SYNTHESIS": ">=2 TRIANGULATED_HIGH_PRIORITY candidates and no critical provenance risk",
+    "GO_TO_FINAL_SYNTHESIS_WITH_RESTRICTIONS": ">=1 TRIANGULATED_HIGH_PRIORITY or >=2 TRIANGULATED_CONTEXT_DEPENDENT candidates with valid evidence extraction",
+    "REVISE_CANDIDATE_FRAMEWORK": "no high-priority and <2 context-dependent candidates, but some external evidence is reusable",
+    "NO_GO_MECHANISTIC_PRIORITIZATION": "no credible independent extracellular protein or perturbation evidence, or critical freeze/provenance failure"
+  },
+  "literature_policy": {
+    "publication_count_ranking": "PROHIBITED",
+    "reviews_as_sole_evidence": "PROHIBITED",
+    "association_to_causation_conversion": "PROHIBITED",
+    "evidence_absent_equals_evidence_against": false,
+    "module10_axis_creation": "PROHIBITED",
+    "phase4a_hierarchy_modification": "PROHIBITED"
+  }
+}

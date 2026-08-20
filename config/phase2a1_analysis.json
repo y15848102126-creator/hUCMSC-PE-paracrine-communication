@@ -1,0 +1,73 @@
+{
+  "phase": "PHASE_2A_1",
+  "analysis_date": "2026-08-09",
+  "frozen_phase2a": {
+    "shared_program_file": "results/02_phase2a/programs/shared_pe_programs.csv",
+    "shared_program_n": 20,
+    "eope_program_file": "results/02_phase2a/programs/eope_specific_programs.csv",
+    "lope_program_file": "results/02_phase2a/programs/lope_specific_programs.csv",
+    "patient_eligibility_file": "results/02_phase2a/metadata/pseudobulk_eligibility.csv",
+    "sha256": {
+      "results/02_phase2a/programs/shared_pe_programs.csv": "39d4d81e6e0b1675cb8f9b05c5bf69fbc63332901326c281bd4c628eedabe7f6",
+      "results/02_phase2a/programs/eope_specific_programs.csv": "e6d48025272a3037adcea04ea28b24a31bbbec4ce073cf9d9cdeb8035e8841ed",
+      "results/02_phase2a/programs/lope_specific_programs.csv": "8219dad9eed3789ce19f6e30d5a08f30cf16ae75f79a63afd742802461c07842",
+      "results/02_phase2a/metadata/pseudobulk_eligibility.csv": "c33dc256a326c231ca81831374206aa92353b59bad31940a3fc764d111172201"
+    },
+    "modification_policy": "READ_ONLY; preserve classifications, FDR values, and eligibility exactly"
+  },
+  "clinical_confounding": {
+    "categorical_test": "two-sided Fisher exact test",
+    "categorical_effect_size": "Cramer's V with V=sqrt(chi_square/n) for 2x2 tables",
+    "continuous_test": "exact Wilcoxon rank-sum where available",
+    "continuous_effect_size": "Hedges-corrected standardized mean difference",
+    "estimable": "both groups contain every modeled categorical level with at least 2 patients per level, or continuous ranges overlap and both groups have at least 5 patients",
+    "weakly_estimable": "some overlap exists but a categorical cell has fewer than 2 patients, a group has fewer than 5 patients, or continuous overlap is narrow",
+    "non_estimable": "a categorical level has zero support in one disease group or continuous ranges do not overlap",
+    "no_forced_adjustment": true
+  },
+  "program_score": {
+    "method": "centered within-sample rank score on TMM logCPM pseudobulk expression",
+    "formula": "mean(rank(gene)/(G+1)-0.5) across available set genes",
+    "inference": "exact enumeration of disease labels conditional on observed group sizes",
+    "multiplicity": "BH within the frozen 20-program universe separately for each sensitivity and contrast",
+    "interpretation": "METHOD_CONCORDANCE_SENSITIVITY_ONLY"
+  },
+  "restricted_sensitivities": {
+    "iugr": "retain the Phase 2A eligible patients, then remove IUGR-positive PE patients; require at least 3 retained patients per group",
+    "delivery": "LOPE C-section-only; require at least 3 retained patients per group; EOPE is NON_ESTIMABLE when no C-section early controls exist",
+    "induction": "audit positivity only; do not adjust or subset when a disease group lacks one induction level"
+  },
+  "yang_replication": {
+    "study": "Yang et al. 2023",
+    "doi": "10.3389/fimmu.2023.1142273",
+    "repository": "https://github.com/JustMoveOnnn/preeclampsia",
+    "placenta_files": ["pla1_placenta0423-2_exon_tagged.dge.txt.gz", "pla2_placenta-2018_combined_exon_tagged.dge.txt.gz", "pla3_Placenta20190402_L3_1000902_exon_tagged.dge.txt.gz", "pla4_placenta-2019_combined_exon_tagged.dge.txt.gz", "pla5_placenta508-1_exon_tagged.dge.txt.gz", "pla6_placenta508-2_exon_tagged.dge.txt.gz"],
+    "groups": {"pla1": "CONTROL", "pla2": "CONTROL", "pla3": "CONTROL", "pla4": "LOPE", "pla5": "LOPE", "pla6": "LOPE"},
+    "published_celltypes": ["VCTp", "VCT", "EVT", "SCT", "DC", "MC", "T", "NK", "B", "VSM", "FB", "EB"],
+    "annotation_reconstruction": "outcome-blind canonical-marker maximum score; minimum two detected marker genes and score margin >=0.05",
+    "cell_qc": "published thresholds: UMI >2000, UMI <150000, mitochondrial fraction <25%; DGE files are already filtered but rules are rechecked",
+    "minimum_cells_per_donor_celltype": 20,
+    "minimum_donors_per_group": 3,
+    "mapping": {
+      "SCT": {"phase2a": "SCT", "status": "DIRECT_MATCH"},
+      "FB": {"phase2a": "PLACENTAL_STROMAL", "status": "APPROXIMATE_MATCH"},
+      "MC": {"phase2a": "NOT_MAPPABLE", "status": "NOT_MAPPABLE", "reason": "published MC does not distinguish fetal Hofbauer from other macrophage/DC states"}
+    },
+    "test_universe": "only the 20 frozen Admati SHARED_PE programs"
+  },
+  "cameraPR_statistic": {
+    "original_column": "NES",
+    "formula": "signed(abs(mean(set-member signed edgeR QL statistics) / sd(all estimable gene statistics))) with sign forced to cameraPR Direction",
+    "official_cameraPR_output": false,
+    "replacement_name": "SIGNED_MEAN_STATISTIC_SD_SCALED",
+    "significance_unchanged": true
+  },
+  "redundancy": {
+    "scope": "within cell type and frozen direction",
+    "similarity": "Jaccard membership similarity",
+    "graph_edge_threshold": 0.25,
+    "module_rule": "connected components including singleton nodes; biological labels assigned only after inspecting component membership"
+  },
+  "seed": 20260809,
+  "forbidden": ["modify Phase 2A discovery results", "discover new programs", "hUC-MSC analysis", "Phase 2B bulk validation", "therapeutic inference"]
+}

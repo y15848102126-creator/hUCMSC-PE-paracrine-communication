@@ -1,0 +1,84 @@
+{
+  "phase": "PHASE_2B",
+  "freeze_date": "2026-08-10",
+  "outcome_inspection_status_at_freeze": "NOT_INSPECTED",
+  "receiver_history": {
+    "phase2a": "LEGACY_COUNT_MODEL_DISCOVERY",
+    "phase2a2_gate": "GO_TO_PHASE2B_WITH_RESTRICTIONS",
+    "phase1b_gene_level_result": "ZERO_STABLE_GENES_UNDER_PREREGISTERED_CRITERIA",
+    "upstream_sha256": {
+      "results/02_phase2a2/corrected_analysis/corrected_program_modules.csv": "aa1abf8880e3b78e1a740c640526f7dca2c2ea2fc73d71a34380235bb93a0c1e",
+      "results/02_phase2a2/evidence/receiver_module_evidence_hierarchy.csv": "97df031c38691f7e9fb676d87c80e64548d140ab71cb20639a7ddc732e6b0e37",
+      "results/01_phase1a/bulk_sample_freeze.csv": "1bb141647e663f8909850bfb7e5ec3855937959e465e2397f026e0e16991fd0b",
+      "results/01_phase1a1/formal_phase1b_matrix_registry.csv": "ba5868243d2cc58137b1c4fda06ea4da8ced78f50994975376bc39146bd98898",
+      "config/phase1b_analysis.json": "351226950436fc1da65dc871c496b692c3c64b7377e176a9a13caa81533c92c1",
+      "results/01_phase1b/meta/stable_pe_genes.csv": "4f0a39a0942685a0de7745cb040e235a3f1479c7e7b9f5d87b1cee275de47d6b"
+    }
+  },
+  "candidate_modules": [
+    "PROGRAM_MODULE_01", "PROGRAM_MODULE_02", "PROGRAM_MODULE_03", "PROGRAM_MODULE_04", "PROGRAM_MODULE_05",
+    "PROGRAM_MODULE_06", "PROGRAM_MODULE_07", "PROGRAM_MODULE_09", "PROGRAM_MODULE_10", "PROGRAM_MODULE_11"
+  ],
+  "held_module": {"program_module": "PROGRAM_MODULE_08", "status": "HOLD_EXTERNAL_DISCORDANCE"},
+  "expected_constituent_hypothesis_n": 19,
+  "gene_sets": {
+    "version": "MSigDB 2026.1.Hs",
+    "collections": ["Hallmark", "Reactome", "GO Biological Process"],
+    "membership_policy": "exact original GMT membership; no bulk-outcome optimization",
+    "gmt_sha256": {
+      "h.all.v2026.1.Hs.symbols.gmt": "eecaf6dad908334ae885406ec72bdc0646d8917588ed7c219fac92fc5363f596",
+      "c2.cp.reactome.v2026.1.Hs.symbols.gmt": "5d61f289a2400cddfbb3a3353829fd2284a360bbe50f2093b566c4b7bea93341",
+      "c5.go.bp.v2026.1.Hs.symbols.gmt": "9be09dd06d6652566eb52eed530d62e6dfecc4365c1e81afd6f0b7f2e86dd4f9"
+    }
+  },
+  "core_cohorts": ["GSE75010_BIOBANK", "GSE30186", "GSE10588", "GSE24129", "GSE25906", "GSE43942"],
+  "primary_formulas": {
+    "GSE75010_BIOBANK": "~ disease", "GSE30186": "~ disease", "GSE10588": "~ disease",
+    "GSE24129": "~ disease", "GSE25906": "~ disease + batch", "GSE43942": "~ disease"
+  },
+  "sensitivity_formulas": {
+    "GSE75010_BIOBANK_GA_SEX": "~ disease + GA_c + fetal_sex",
+    "GSE25906_GA_SEX": "~ disease + batch + GA_c + fetal_sex",
+    "GSE25906_GA_SEX_LABOR": "~ disease + batch + GA_c + fetal_sex + labor"
+  },
+  "rank_score": {
+    "method": "transparent unidirectional singscore-equivalent mean fractional within-sample rank",
+    "formula": "mean((average_rank_across_all_measured_genes - 1)/(measured_gene_n - 1)) over frozen set members",
+    "direction_handling": "score always measures expression abundance; frozen DOWN programs expect negative disease beta",
+    "ties": "average",
+    "standardization": "z-score across all included PE and control samples together within cohort and hypothesis",
+    "technical_reason_not_package_singscore": "the frozen calculation is dependency-light and algebraically follows the single-direction rank principle; within-cohort z-standardization makes affine singscore normalization immaterial"
+  },
+  "estimability": {"minimum_measured_genes": 15, "minimum_membership_fraction": 0.60, "minimum_meta_cohorts": 4},
+  "cohort_models": {"method": "ordinary least squares on standardized score", "coefficient": "diseasePE", "classical_SE": true},
+  "meta_analysis": {
+    "method": "REML", "inference": "MODIFIED_KNHA_T", "minimum_primary_cohorts": 4,
+    "minimum_valid_loco_cohorts": 3, "primary_BH_family": "19 frozen cell-state-origin constituent hypotheses",
+    "loco_BH_family": "19 frozen hypotheses valid in each omission"
+  },
+  "constituent_classification": {
+    "BULK_ROBUST_SUPPORT": "k>=4; BH_FDR<0.05; expected meta direction; expected-direction cohort proportion>=0.75; I2<=60; every valid LOCO has expected direction",
+    "BULK_HETEROGENEOUS_SUPPORT": "k>=4; BH_FDR<0.05; expected meta direction; expected-direction cohort proportion>=0.75; I2>60",
+    "BULK_DIRECTIONAL_SUPPORT": "k>=4; expected meta direction; expected-direction cohort proportion>=0.75; neither robust nor heterogeneous classification",
+    "NOT_BULK_SUPPORTED": "all other patterns"
+  },
+  "module_classification": {
+    "required_fraction": 0.60,
+    "required_integer": {"1": 1, "2": 2, "4": 3, "5": 3},
+    "BULK_MODULE_SUPPORTED": "robust constituent count reaches ceiling(0.60*n)",
+    "BULK_MODULE_DIRECTIONAL": "robust threshold not reached and exact BULK_DIRECTIONAL_SUPPORT count reaches ceiling(0.60*n)",
+    "BULK_MODULE_DISCORDANT": "support thresholds not reached and >=40% of estimable constituents have meta direction opposite the frozen direction",
+    "NOT_BULK_SUPPORTED": "all other module patterns"
+  },
+  "cameraPR_sensitivity": {"scope": "only frozen 19 hypotheses", "inter_gene_correlation": 0.01, "label": "METHOD_CONCORDANCE_SENSITIVITY"},
+  "covariate_material_change": {"direction_flip": true, "attenuation_ratio_lt": 0.50, "relative_change_gt": 0.25, "denominator_floor": 0.05},
+  "representative_set_rule": "lexicographically first gene_set within each module; selected without bulk outcomes",
+  "gate_rule": {
+    "GO_TO_PHASE3": ">=3 BULK_MODULE_SUPPORTED and no unresolved critical receiver-method risk",
+    "GO_TO_PHASE3_WITH_RESTRICTIONS": ">=2 modules are BULK_MODULE_SUPPORTED or BULK_MODULE_DIRECTIONAL but external/covariate/heterogeneity limitations remain",
+    "REVISE_RECEIVER_SET": "exactly 1 module is supported or directional",
+    "NO_GO_RECEIVER_ARM": "zero modules are supported or directional"
+  },
+  "random_seed": 20260810,
+  "forbidden": ["new pathway discovery", "hUC-MSC sender analysis", "NicheNet", "CellChat", "ligand-receptor analysis", "machine learning", "Phase 3"]
+}

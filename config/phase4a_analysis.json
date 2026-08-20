@@ -1,0 +1,101 @@
+{
+  "phase": "PHASE_4A_BLINDED_SENDER_RECEIVER_INTEGRATION",
+  "freeze_date": "2026-08-15",
+  "outcome_inspection_status_at_freeze": "NO_PHASE4_COMPATIBILITY_OR_SIGNED_RESULTS_INSPECTED",
+  "blinding": {
+    "pe_specific_literature_search": "PROHIBITED",
+    "hucmsc_mechanism_literature_search": "PROHIBITED",
+    "wet_lab_interpretation": "PROHIBITED",
+    "phase4b": "LOCKED",
+    "sender_membership_changes": "PROHIBITED",
+    "receiver_membership_changes": "PROHIBITED"
+  },
+  "upstream_sha256": {
+    "results/03_phase3/sender/frozen_phase4_sender_candidates.csv": "ab26cd70a38e9077940a2098b52e7ae556d5e05c198f0da15bd876d734fd6c4b",
+    "results/03_phase3/ligand_universe/frozen_ligand_universe.csv": "5a36d116fdbc616fec16976980e423b943d0b755f5c5bd427d4479bf40108ea0",
+    "data/raw/phase3/lr_network_human_21122021.rds": "47c971d2fbba4ecd0ba7485d1846a74054432a0d1a97ea3e6a79ae27d0da8094",
+    "results/02_phase2b/evidence/updated_receiver_evidence_hierarchy.csv": "3e77cf70166e1418e7e258bb8c74f48d2ebe6b98ab37351061fa74455d5305f0",
+    "results/02_phase2b/hypotheses/frozen_phase2b_gene_sets.csv": "b4408ce638cc9a8138e00af928680cbae283c4d461458ab5564f3c5cebaf7b38",
+    "results/02_phase2a2/corrected_analysis/corrected_gene_statistics.csv": "2ad6e645f7bb8f64892213e59a4aa24f6005c9c463ff93f3b9b313d8db1eaf05",
+    "results/02_phase2a2/corrected_analysis/corrected_program_modules.csv": "aa1abf8880e3b78e1a740c640526f7dca2c2ea2fc73d71a34380235bb93a0c1e",
+    "data/interim/phase2a/admati_harmonized_pseudobulk_counts.csv": "3fc66a6b5565eb7df7a820597612bdfb98cff105e80b462eb5672dfe61a93e92",
+    "data/interim/phase2a/pseudobulk_strata.tsv": "2a68b2e302c2b852804983054af98a50038a3301cdee98a235825423fbbf20a2",
+    "results/02_phase2a/metadata/pseudobulk_eligibility.csv": "c33dc256a326c231ca81831374206aa92353b59bad31940a3fc764d111172201"
+  },
+  "resource_sha256": {
+    "data/raw/phase4a/ligand_target_matrix_nsga2r_final.rds": "699fce17ff65e2511277359696306bb130aa833bd7f30dd9290ad9efd9dc9c5d",
+    "data/raw/phase4a/omnipath_lr_crosscheck_20260815.tsv": "789829d2a581f920f0d4b6c3015790db7b16df75180032d1628c6c1df5d14ef3",
+    "data/raw/phase4a/omnipath_signed_activity_flow_20260815.tsv": "eebe04fe664bc36023e944bef290b8a657f31d6fd4645bc2363ca9da7e6287d9",
+    "data/raw/phase4a/collectri_signed_20260815.tsv": "1b501cc5c677a93cf94d604743ea030d0860b9ae59adb2a15dac9636822c7d91",
+    "data/raw/phase4a/cytosig_signature_centroid_core.tsv": "60a3152afe429a7dbb41fa0597ab9730141ce858af16a35f7063e64bfc239bde"
+  },
+  "msigdb_sha256": {
+    "data/raw/phase2a_resources/h.all.v2026.1.Hs.symbols.gmt": "eecaf6dad908334ae885406ec72bdc0646d8917588ed7c219fac92fc5363f596",
+    "data/raw/phase2a_resources/c2.cp.reactome.v2026.1.Hs.symbols.gmt": "5d61f289a2400cddfbb3a3353829fd2284a360bbe50f2093b566c4b7bea93341",
+    "data/raw/phase2a_resources/c5.go.bp.v2026.1.Hs.symbols.gmt": "9be09dd06d6652566eb52eed530d62e6dfecc4365c1e81afd6f0b7f2e86dd4f9"
+  },
+  "sender_scopes": {
+    "P1_PARACRINE_CORE": "S1/S2 and omnipath_secreted_annotation == YES",
+    "P2_EXTRACELLULAR_EXTENDED": "S1/S2 and secreted == YES or extracellular == YES",
+    "P3_FULL_LR_SENSITIVITY": "all 214 S1/S2 candidates",
+    "primary_scope": "P1_PARACRINE_CORE",
+    "s1_priority_in_integration": "NO"
+  },
+  "receiver_hierarchy": {
+    "R1": ["PROGRAM_MODULE_07"],
+    "R2A": ["PROGRAM_MODULE_01", "PROGRAM_MODULE_04", "PROGRAM_MODULE_05", "PROGRAM_MODULE_10"],
+    "R2B": ["PROGRAM_MODULE_06"],
+    "HOLD": ["PROGRAM_MODULE_08"],
+    "NOT_PROMOTED": ["PROGRAM_MODULE_02", "PROGRAM_MODULE_03", "PROGRAM_MODULE_09", "PROGRAM_MODULE_11"]
+  },
+  "receptor_competence": {
+    "expression_layer": "Phase2A2 patient-celltype mean of public normalized-and-ceiled expression",
+    "patient_detected": "mean_normalized_expression >= 0.1",
+    "RECEPTOR_COMPETENT": "PE detection proportion >= 0.50 and PE detected n >= 3",
+    "RECEPTOR_WEAK": "not competent and (PE detection proportion >= 0.20 or PE detected n >= 2)",
+    "RECEPTOR_NOT_SUPPORTED": "all remaining receptors",
+    "receptor_de_required": false
+  },
+  "target_compatibility": {
+    "resource": "NicheNet ligand_target_matrix_nsga2r_final.rds; unsigned",
+    "background": "genes estimable in both EOPE and LOPE for the cell type and present in the NicheNet matrix",
+    "shared_statistic": "mean of separately z-standardized corrected EOPE and LOPE moderated t",
+    "score": "mean NicheNet target-rank percentile within frozen module weighted by absolute shared statistic",
+    "permutations": 2000,
+    "seed": 20260815,
+    "coverage": "at least min(15, ceiling(0.60 * frozen module genes)) measured module genes and at least 10 positive-potential module targets",
+    "TARGET_COMPATIBLE": "competent LR plus weighted score >= 0.60 plus family BH FDR < 0.10",
+    "TARGET_DIRECTIONAL_TREND": "competent LR plus weighted score >= 0.55 without full criteria",
+    "target_edge_rule": "positive potential and at or above ligand-specific background 95th percentile",
+    "nichenet_direction": "UNSIGNED_COMPATIBILITY_ONLY"
+  },
+  "signed_network": {
+    "activity_flow": "OmniPath 2026-08-15 directed unambiguous signed interactions",
+    "tf_target": "CollecTRI via OmniPath 2026-08-15 directed unambiguous signed interactions",
+    "max_receptor_to_tf_edges": 3,
+    "target_path_consensus": 0.75,
+    "minimum_targets": 5,
+    "minimum_tfs": 2,
+    "cytosig": "core non-expanded signature; exact case-insensitive ligand-column match only",
+    "cytosig_minimum_genes": 15,
+    "cytosig_abs_rho": 0.25,
+    "cytosig_family_fdr": 0.10,
+    "REVERSAL_SUPPORTED": "at least one evaluable source predicts reversal and no evaluable source predicts concordance",
+    "DISEASE_CONCORDANT_POTENTIAL": "at least one evaluable source predicts concordance and no evaluable source predicts reversal",
+    "SIGNED_EVIDENCE_INSUFFICIENT": "no evaluable source, mixed direction, or source conflict"
+  },
+  "candidate_hierarchy": {
+    "TIER_A_DIRECTIONAL_RESCUE_CANDIDATE": "P1 plus competent receptor plus TARGET_COMPATIBLE plus REVERSAL_SUPPORTED plus R1/R2A",
+    "TIER_B_COMPATIBILITY_CANDIDATE": "competent receptor plus TARGET_COMPATIBLE plus SIGNED_EVIDENCE_INSUFFICIENT plus R1/R2A",
+    "TIER_C_EXTENDED_EXTRACELLULAR": "target-compatible axis restricted to P2/P3 and/or R2B",
+    "NOT_PRIORITIZED": "all remaining axes",
+    "composite_score": "NONE"
+  },
+  "gate_rule": {
+    "GO_TO_PHASE4B": "at least one Tier A supported by two independent signed sources and no critical risk",
+    "GO_TO_PHASE4B_WITH_RESTRICTIONS": "at least one Tier A from one signed source or at least five Tier B candidates, with resources valid",
+    "REVISE_INTEGRATION_FRAMEWORK": "valid frozen inputs but fewer than five Tier B and no Tier A, or signed resources unusable",
+    "NO_GO_INTEGRATION": "freeze invalid, no receptor-compatible axes, or critical provenance failure"
+  },
+  "random_seed": 20260815
+}

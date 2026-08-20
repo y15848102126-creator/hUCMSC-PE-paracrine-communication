@@ -1,0 +1,23 @@
+{
+  "freeze_date": "2026-08-15",
+  "purpose": "Final evidence synthesis only; no new discovery, threshold changes, or candidate reclassification.",
+  "receiver_hierarchy": {
+    "R1": ["PROGRAM_MODULE_07"],
+    "R2A": ["PROGRAM_MODULE_01", "PROGRAM_MODULE_04", "PROGRAM_MODULE_05", "PROGRAM_MODULE_10"],
+    "R2B": ["PROGRAM_MODULE_06"],
+    "HOLD": ["PROGRAM_MODULE_08"],
+    "NOT_PROMOTED": ["PROGRAM_MODULE_02", "PROGRAM_MODULE_03", "PROGRAM_MODULE_09", "PROGRAM_MODULE_11"]
+  },
+  "frozen_17_candidates": [
+    "ADAM17", "AGRN", "COL18A1", "DCN", "ENPP1", "FURIN", "GDF11", "GRN",
+    "HSPG2", "MDK", "NAMPT", "NID1", "PSEN1", "SERPINE1", "TIMP1", "TIMP2", "WNT5A"
+  ],
+  "enpp1_final_status": {
+    "status": "MECHANICALLY_TRIANGULATED_LEAD_HYPOTHESIS",
+    "context_dependent": "YES",
+    "ev_only_protein_source": "YES",
+    "non_placental_empirical_reversal": "YES",
+    "direct_pe_experimental_validation": "NO"
+  },
+  "final_gate": "READY_WITH_RESTRICTIONS"
+}
