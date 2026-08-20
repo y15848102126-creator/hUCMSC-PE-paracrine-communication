@@ -18,17 +18,20 @@ Recommended description: Reproducible code and derived outputs for cross-dataset
 | Remote `main` immediately after the visibility-only operation | `240498efe74c5ee0bcb4ee779594c2cbebd6dc1a`; identical before and after the visibility change |
 | README-correction base `main` SHA | `1ebb23cc05359d29ba21824facc297237824d4c0` |
 | Existing tag status | Annotated `v1.0.0` remains unchanged: tag object `54e897952eec3afbdc060856b4541ef423d676c5`, peeled commit `834602d2049f301dbe10ecfef3f11908b90f6221` |
-| Final archival tag status | Annotated `v1.0.1` created and pushed after the administrative correction; it points to the commit containing the corrected README, this report, and the refreshed manifest |
-| GitHub Release status | NOT CREATED; requires separate human approval |
+| Final archival tag status | Annotated `v1.0.1` unchanged after Release creation: tag object `087c96982ed5097ced7124c8ccfded87989c2ff7`, peeled commit `63bbded6d41e273e5880c2d745843b9c4e10b8ff` |
+| GitHub Release status | CREATED and publicly accessible at `https://github.com/y15848102126-creator/hUCMSC-PE-paracrine-communication/releases/tag/v1.0.1` |
+| GitHub Release title | `v1.0.1 — Manuscript reproducibility release` |
+| GitHub Release tag/commit | Existing `v1.0.1`; peeled commit `63bbded6d41e273e5880c2d745843b9c4e10b8ff` |
 | License | BSD 3-Clause for original project code only |
 | Tracked files | 160, including this report and excluding `.git/` |
-| Repository content size | 6,161,571 bytes, excluding `.git/` |
+| Repository content size | 6,163,524 bytes, excluding `.git/` |
 | Files excluded by `.gitignore` | 0 existing release-candidate files |
 | Privacy/credential scan | PASS before Git initialization and unchanged during the push-only stage; no unresolved sensitive/private content detected |
 | Manifest verification | PASS after regeneration; `FILE_MANIFEST.csv` excludes itself and covers every other tracked release file |
 | Third-party redistribution status | No raw matrices, complete third-party database/network dumps, source proteomics tables, publication PDFs, or supplementary source files are redistributed; source-provider rights remain in force |
-| Zenodo DOI | PENDING; no connection or deposit was attempted |
+| Zenodo status | Integration enabled by the user; awaiting automatic GitHub Release archival and DOI generation. No direct Zenodo interaction or manual upload was performed |
 | Files changed by the visibility operation | NONE; the subsequent administrative update changed only this report and its `FILE_MANIFEST.csv` hash record |
+| Files changed by GitHub Release creation | NONE; the subsequent administrative update changed only this report and its `FILE_MANIFEST.csv` hash record |
 
 ## Pre-commit inventory
 
@@ -99,8 +102,20 @@ The SHA of the report-containing `main` commit is not embedded in this file beca
 - The repository remained `PUBLIC`, the README rendered with the corrected status, and the GitHub Release count remained zero.
 - No Zenodo interaction occurred.
 
+## GitHub Release v1.0.1
+
+- Immediately before Release creation, the repository was `PUBLIC`, GitHub Release count was zero, and existing annotated tag `v1.0.1` pointed to `63bbded6d41e273e5880c2d745843b9c4e10b8ff`.
+- GitHub Release `v1.0.1 — Manuscript reproducibility release` was created with `--verify-tag`, so GitHub used the existing tag rather than creating or moving one.
+- Release URL: `https://github.com/y15848102126-creator/hUCMSC-PE-paracrine-communication/releases/tag/v1.0.1`.
+- The release is published, is neither a draft nor a prerelease, and contains no manually uploaded assets. GitHub's automatically generated source archives remain available.
+- After Release creation, annotated tag `v1.0.1` retained object `087c96982ed5097ced7124c8ccfded87989c2ff7` and peeled commit `63bbded6d41e273e5880c2d745843b9c4e10b8ff`.
+- Annotated tag `v1.0.0` also remained unchanged: object `54e897952eec3afbdc060856b4541ef423d676c5`, peeled commit `834602d2049f301dbe10ecfef3f11908b90f6221`.
+- Repository visibility remained `PUBLIC`, and the Release URL returned HTTP 200 without authentication.
+- GitHub Release creation changed no repository file. This later report/manifest update is administrative and does not modify scientific content or either release tag.
+- Zenodo was not accessed directly. Automatic archival and DOI generation are pending through the user-enabled GitHub integration.
+
 ## Final gate
 
-**PUBLIC_GITHUB_REPOSITORY_READY_FOR_ZENODO_V1_0_1_RELEASE**
+**GITHUB_V1_0_1_RELEASE_CREATED_AWAITING_ZENODO_DOI**
 
-No scientific analysis was rerun. The repository is public; no GitHub Release or Zenodo record was created.
+No scientific analysis was rerun. The repository and GitHub Release are public; Zenodo automatic archival and DOI generation are pending.
