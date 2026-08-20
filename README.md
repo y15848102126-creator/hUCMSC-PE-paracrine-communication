@@ -1,8 +1,10 @@
-# hUCMSC–PE therapeutic communication — public repository candidate v1.1
+# hUCMSC–PE therapeutic communication — public repository v1.1
 
 ## Release status
 
-**HUMAN-REVIEWED RELEASE CANDIDATE — PREPARED FOR PRIVATE GITHUB INSPECTION; NOT YET PUBLICLY PUBLISHED.**
+**PUBLIC REPOSITORY v1.1 — HUMAN RELEASE REVIEW PASSED**
+
+This repository is publicly available. A versioned archival release and Zenodo DOI are pending.
 
 This sanitized candidate reconstructs the frozen computational workflow accompanying the manuscript *Independent mapping of placental receiver states and hUC-MSC sender programs constrains putative paracrine communication in preeclampsia*. It does not establish a therapeutic mechanism.
 
