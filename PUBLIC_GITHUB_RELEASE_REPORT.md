@@ -13,12 +13,12 @@ Recommended description: Reproducible code and derived outputs for cross-dataset
 | GitHub repository URL | NOT CREATED — GitHub CLI/authentication unavailable during preparation |
 | Visibility | LOCAL ONLY; no public release authorized or performed |
 | Current branch | `main` |
-| Initial release commit SHA | PENDING_INITIAL_COMMIT |
-| Local tag status | `v1.0.0` pending until the verified repository content is committed |
+| Initial release commit SHA | `d12bfd3cb356ef5aebcd3cb469465e5eb68e8280` |
+| Local tag status | `v1.0.0` created locally after final repository verification; not pushed and not published as a GitHub Release |
 | GitHub Release status | NOT CREATED; requires human approval after repository inspection |
 | License | BSD 3-Clause for original project code only |
-| Prospective tracked files | 160, including this report and excluding `.git/` |
-| Repository content size | 6,157,895 bytes, excluding `.git/` |
+| Tracked files | 160, including this report and excluding `.git/` |
+| Repository content size | 6,157,946 bytes, excluding `.git/` |
 | Files excluded by `.gitignore` | 0 existing release-candidate files |
 | Privacy/credential scan | PASS before Git initialization; no unresolved sensitive/private content detected |
 | Manifest verification | PASS after regeneration; `FILE_MANIFEST.csv` excludes itself and covers every other tracked release file |
