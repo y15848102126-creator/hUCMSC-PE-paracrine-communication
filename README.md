@@ -4,7 +4,12 @@
 
 **PUBLIC REPOSITORY v1.1 — HUMAN RELEASE REVIEW PASSED**
 
-This repository is publicly available. A versioned archival release and Zenodo DOI are pending.
+This repository is publicly available. The manuscript reproducibility snapshot is archived as release `v1.0.1`.
+
+## Archived release
+
+- GitHub release: `v1.0.1`
+- Zenodo: https://doi.org/10.5281/zenodo.22026030
 
 This sanitized candidate reconstructs the frozen computational workflow accompanying the manuscript *Independent mapping of placental receiver states and hUC-MSC sender programs constrains putative paracrine communication in preeclampsia*. It does not establish a therapeutic mechanism.
 

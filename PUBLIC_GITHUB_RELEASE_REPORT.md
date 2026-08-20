@@ -29,7 +29,7 @@ Recommended description: Reproducible code and derived outputs for cross-dataset
 | Privacy/credential scan | PASS before Git initialization and unchanged during the push-only stage; no unresolved sensitive/private content detected |
 | Manifest verification | PASS after regeneration; `FILE_MANIFEST.csv` excludes itself and covers every other tracked release file |
 | Third-party redistribution status | No raw matrices, complete third-party database/network dumps, source proteomics tables, publication PDFs, or supplementary source files are redistributed; source-provider rights remain in force |
-| Zenodo status | Integration enabled by the user; awaiting automatic GitHub Release archival and DOI generation. No direct Zenodo interaction or manual upload was performed |
+| Zenodo status | RELEASED; manuscript-facing version DOI `10.5281/zenodo.22026030` (concept DOI `10.5281/zenodo.22026029`) |
 | Files changed by the visibility operation | NONE; the subsequent administrative update changed only this report and its `FILE_MANIFEST.csv` hash record |
 | Files changed by GitHub Release creation | NONE; the subsequent administrative update changed only this report and its `FILE_MANIFEST.csv` hash record |
 
@@ -116,6 +116,13 @@ The SHA of the report-containing `main` commit is not embedded in this file beca
 
 ## Final gate
 
-**GITHUB_V1_0_1_RELEASE_CREATED_AWAITING_ZENODO_DOI**
+**PUBLIC_REPOSITORY_AND_ZENODO_ARCHIVE_RELEASED**
 
-No scientific analysis was rerun. The repository and GitHub Release are public; Zenodo automatic archival and DOI generation are pending.
+No scientific analysis was rerun. The repository and GitHub Release are public, and the immutable `v1.0.1` snapshot is archived at https://doi.org/10.5281/zenodo.22026030.
+
+## Post-release DOI backfill
+
+- The public README was updated administratively to display the released `v1.0.1` Zenodo archive.
+- The manuscript-facing archival identifier is the version DOI `10.5281/zenodo.22026030`; the concept DOI was recorded only to prevent substitution.
+- This post-release update advances `main` but does not move or recreate `v1.0.1`, create another GitHub Release, or create another Zenodo version.
+- No scientific result, method, figure, threshold, candidate hierarchy, or evidence classification changed.
